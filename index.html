@@ -1,0 +1,2082 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Orkap | A tua loja online</title>
+
+<meta name="description" content="Descobre equipamentos desportivos e perfumes de várias marcas na Orkap. Compras online, por encomenda.">
+
+<style>
+:root {
+    --azul: #527fae;
+    --azul-claro: #eaf2fa;
+    --azul-suave: #f4f8fc;
+    --branco: #ffffff;
+    --texto: #263442;
+    --cinza: #718096;
+    --borda: #e5ebf2;
+    --verde: #218838;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--branco);
+    color: var(--texto);
+}
+
+button,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* BARRA SUPERIOR */
+
+.top-bar {
+    background: var(--azul);
+    color: white;
+    text-align: center;
+    padding: 9px 12px;
+    font-size: 12px;
+    letter-spacing: .3px;
+}
+
+/* CABEÇALHO */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid var(--borda);
+}
+
+.header-content {
+    max-width: 1250px;
+    margin: auto;
+    padding: 13px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.profile-photo {
+    width: 43px;
+    height: 43px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid var(--azul-claro);
+}
+
+.brand-name {
+    font-size: 25px;
+    font-weight: 800;
+    color: var(--azul);
+    letter-spacing: -.8px;
+}
+
+.brand small {
+    display: block;
+    font-size: 10px;
+    font-weight: normal;
+    color: var(--cinza);
+    letter-spacing: 1px;
+    margin-top: 2px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 23px;
+}
+
+nav a {
+    font-size: 13px;
+    transition: .2s;
+}
+
+nav a:hover {
+    color: var(--azul);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.currency-select {
+    padding: 9px;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    background: white;
+    color: var(--texto);
+}
+
+.cart-button {
+    border: none;
+    background: var(--azul-claro);
+    color: var(--azul);
+    border-radius: 9px;
+    padding: 11px 13px;
+    font-weight: bold;
+}
+
+.cart-count {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 19px;
+    height: 19px;
+    background: var(--azul);
+    color: white;
+    border-radius: 50%;
+    font-size: 11px;
+    margin-left: 4px;
+}
+
+/* APRESENTAÇÃO */
+
+.hero {
+    background: var(--azul-suave);
+    padding: 55px 5%;
+}
+
+.hero-content {
+    max-width: 1250px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 45px;
+}
+
+.hero-label {
+    display: inline-block;
+    padding: 8px 13px;
+    background: var(--azul-claro);
+    color: var(--azul);
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(35px, 4.5vw, 59px);
+    line-height: 1.12;
+    margin-bottom: 20px;
+    letter-spacing: -1.5px;
+}
+
+.hero h1 span {
+    color: var(--azul);
+}
+
+.hero p {
+    color: var(--cinza);
+    line-height: 1.8;
+    max-width: 470px;
+    font-size: 15px;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 27px;
+}
+
+.primary-button,
+.secondary-button {
+    display: inline-block;
+    padding: 14px 21px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: bold;
+    border: 1px solid var(--azul);
+}
+
+.primary-button {
+    background: var(--azul);
+    color: white;
+}
+
+.secondary-button {
+    color: var(--azul);
+    background: white;
+}
+
+.hero-image {
+    width: 100%;
+    height: 390px;
+    object-fit: cover;
+    border-radius: 18px;
+    background: var(--azul-claro);
+}
+
+/* BENEFÍCIOS */
+
+.benefits {
+    max-width: 1250px;
+    margin: auto;
+    padding: 25px 5%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.benefit {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 15px;
+    background: white;
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+}
+
+.benefit-icon {
+    font-size: 24px;
+}
+
+.benefit strong {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.benefit small {
+    color: var(--cinza);
+    font-size: 11px;
+}
+
+/* SECÇÕES */
+
+.section {
+    padding: 55px 5%;
+}
+
+.section.soft {
+    background: var(--azul-suave);
+}
+
+.section-inner {
+    max-width: 1250px;
+    margin: auto;
+}
+
+.section-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 28px;
+}
+
+.section-heading h2 {
+    font-size: clamp(25px, 3vw, 34px);
+    margin-bottom: 9px;
+}
+
+.section-heading p {
+    color: var(--cinza);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.section-tag {
+    color: var(--azul);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* CLUBES */
+
+.club-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 28px;
+}
+
+.filter-button {
+    border: 1px solid var(--borda);
+    background: white;
+    padding: 10px 15px;
+    border-radius: 30px;
+    color: var(--texto);
+    font-size: 12px;
+    transition: .2s;
+}
+
+.filter-button:hover,
+.filter-button.active {
+    background: var(--azul);
+    border-color: var(--azul);
+    color: white;
+}
+
+/* PRODUTOS */
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.product-card {
+    background: white;
+    border: 1px solid var(--borda);
+    border-radius: 13px;
+    overflow: hidden;
+    transition: transform .2s, box-shadow .2s;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 28px rgba(36, 62, 90, .09);
+}
+
+.product-image-wrap {
+    position: relative;
+    background: #f4f6f8;
+    overflow: hidden;
+}
+
+.product-image {
+    display: block;
+    width: 100%;
+    height: 245px;
+    object-fit: cover;
+    transition: transform .35s;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.04);
+}
+
+.product-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: white;
+    color: var(--azul);
+    padding: 7px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.product-info {
+    padding: 17px;
+}
+
+.product-category {
+    color: var(--azul);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    margin-bottom: 8px;
+}
+
+.product-info h3 {
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+.product-description {
+    font-size: 12px;
+    color: var(--cinza);
+    line-height: 1.6;
+    min-height: 38px;
+}
+
+.product-price {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 15px 0 5px;
+}
+
+.product-price-note {
+    color: var(--cinza);
+    font-size: 10px;
+    margin-bottom: 13px;
+}
+
+.add-cart {
+    width: 100%;
+    background: var(--azul);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    transition: .2s;
+}
+
+.add-cart:hover {
+    background: #3e6895;
+}
+
+.empty-products {
+    grid-column: 1 / -1;
+    padding: 35px;
+    text-align: center;
+    color: var(--cinza);
+    border: 1px dashed var(--borda);
+    border-radius: 12px;
+}
+
+/* CATEGORIAS */
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.category-card {
+    position: relative;
+    min-height: 280px;
+    overflow: hidden;
+    border-radius: 14px;
+    background: var(--azul-claro);
+}
+
+.category-card img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    inset: 0;
+    object-fit: cover;
+    transition: transform .4s;
+}
+
+.category-card:hover img {
+    transform: scale(1.05);
+}
+
+.category-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    padding: 25px;
+    color: white;
+    background: linear-gradient(transparent 15%, rgba(12, 27, 43, .85));
+}
+
+.category-overlay h3 {
+    font-size: 23px;
+    margin-bottom: 8px;
+}
+
+.category-overlay p {
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+.category-overlay a {
+    display: inline-block;
+    width: fit-content;
+    background: white;
+    color: var(--azul);
+    padding: 10px 15px;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* ENCOMENDAS */
+
+.order-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+    align-items: center;
+}
+
+.order-info h2 {
+    font-size: 32px;
+    margin-bottom: 16px;
+}
+
+.order-info p {
+    color: var(--cinza);
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.payment-card {
+    background: white;
+    border: 1px solid var(--borda);
+    border-radius: 14px;
+    padding: 25px;
+}
+
+.payment-line {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--borda);
+    font-size: 13px;
+}
+
+.payment-line:last-child {
+    border-bottom: none;
+}
+
+.payment-line strong {
+    color: var(--azul);
+}
+
+/* CONTACTO */
+
+.contact-box {
+    background: var(--azul);
+    color: white;
+    border-radius: 16px;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+}
+
+.contact-box h2 {
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+.contact-box p {
+    font-size: 13px;
+    line-height: 1.7;
+    opacity: .9;
+}
+
+.contact-button {
+    background: white;
+    color: var(--azul);
+    border: none;
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* CARRINHO */
+
+.cart-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 30, 45, .45);
+    z-index: 200;
+    opacity: 0;
+    visibility: hidden;
+    transition: .25s;
+}
+
+.cart-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.cart-panel {
+    position: fixed;
+    z-index: 201;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: min(430px, 100%);
+    background: white;
+    padding: 23px;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform .3s;
+}
+
+.cart-panel.open {
+    transform: translateX(0);
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--borda);
+}
+
+.cart-header h2 {
+    font-size: 22px;
+}
+
+.close-cart {
+    border: none;
+    background: var(--azul-claro);
+    color: var(--azul);
+    border-radius: 8px;
+    padding: 9px 12px;
+}
+
+.cart-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px 0;
+}
+
+.cart-item {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    gap: 13px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--borda);
+}
+
+.cart-item img {
+    width: 70px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.cart-item h4 {
+    font-size: 13px;
+    margin-bottom: 7px;
+}
+
+.cart-item-price {
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--azul);
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.quantity-controls button {
+    width: 27px;
+    height: 27px;
+    border: 1px solid var(--borda);
+    background: white;
+    border-radius: 6px;
+}
+
+.remove-item {
+    margin-left: auto;
+    color: #c23b3b;
+    border: none !important;
+}
+
+.cart-footer {
+    border-top: 1px solid var(--borda);
+    padding-top: 17px;
+}
+
+.cart-total-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 13px;
+}
+
+.cart-total-line.total {
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 10px;
+    border-top: 1px solid var(--borda);
+}
+
+.cart-total-line.deposit strong {
+    color: var(--verde);
+}
+
+.checkout-button {
+    width: 100%;
+    background: var(--azul);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 9px;
+    font-weight: bold;
+    margin-top: 12px;
+}
+
+.cart-note {
+    text-align: center;
+    color: var(--cinza);
+    font-size: 10px;
+    line-height: 1.6;
+    margin-top: 12px;
+}
+
+.cart-empty {
+    text-align: center;
+    color: var(--cinza);
+    padding: 45px 10px;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* RODAPÉ */
+
+footer {
+    padding: 28px 5%;
+    text-align: center;
+    border-top: 1px solid var(--borda);
+    color: var(--cinza);
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+/* TELEMÓVEL */
+
+@media (max-width: 1000px) {
+    .header-content {
+        flex-wrap: wrap;
+    }
+
+    nav {
+        order: 3;
+        width: 100%;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding: 8px 0 3px;
+        gap: 20px;
+    }
+
+    nav a {
+        white-space: nowrap;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .hero-content {
+        gap: 25px;
+    }
+}
+
+@media (max-width: 700px) {
+    .top-bar {
+        font-size: 10px;
+    }
+
+    .header-content {
+        padding: 12px 4%;
+        gap: 10px;
+    }
+
+    .brand-name {
+        font-size: 21px;
+    }
+
+    .profile-photo {
+        width: 38px;
+        height: 38px;
+    }
+
+    .header-actions {
+        gap: 6px;
+    }
+
+    .currency-select {
+        padding: 8px 4px;
+        font-size: 11px;
+    }
+
+    .cart-button {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    nav {
+        gap: 18px;
+    }
+
+    nav a {
+        font-size: 12px;
+    }
+
+    .hero {
+        padding: 35px 5%;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .hero h1 {
+        font-size: 39px;
+    }
+
+    .hero-image {
+        height: 280px;
+    }
+
+    .benefits {
+        grid-template-columns: 1fr;
+        padding: 20px 5%;
+        gap: 10px;
+    }
+
+    .section {
+        padding: 40px 5%;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .product-image {
+        height: 190px;
+    }
+
+    .product-info {
+        padding: 12px;
+    }
+
+    .product-info h3 {
+        font-size: 13px;
+    }
+
+    .product-description {
+        font-size: 11px;
+    }
+
+    .product-price {
+        font-size: 15px;
+    }
+
+    .add-cart {
+        padding: 11px 5px;
+        font-size: 11px;
+    }
+
+    .category-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .category-card {
+        min-height: 250px;
+    }
+
+    .order-info {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .contact-box {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 28px 22px;
+    }
+
+    .contact-box h2 {
+        font-size: 24px;
+    }
+
+    .contact-button {
+        white-space: normal;
+    }
+}
+
+@media (max-width: 360px) {
+    .brand small {
+        display: none;
+    }
+
+    .brand-name {
+        font-size: 18px;
+    }
+
+    .product-image {
+        height: 160px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="top-bar">
+    COMPRAS ONLINE · PRODUTOS POR ENCOMENDA 
+</div>
+
+<header>
+    <div class="header-content">
+
+        <a href="#inicio" class="brand">
+            <img
+                src="perfil.png"
+                alt="Orkap"
+                class="profile-photo"
+            >
+
+            <div>
+                <div class="brand-name">Orkap</div>
+                <small>A TUA LOJA ONLINE</small>
+            </div>
+        </a>
+
+        <nav>
+            <a href="#inicio">Início</a>
+            <a href="#equipamentos">Equipamentos</a>
+            <a href="#perfumes">Perfumes</a>
+            <a href="#destaques">Mais vendidos</a>
+            <a href="#novidades">Novidades</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+
+        <div class="header-actions">
+
+            <select id="currency" class="currency-select"
+                    aria-label="Selecionar moeda">
+                <option value="Kz">Kz</option>
+                <option value="EUR">€ EUR</option>
+            </select>
+
+            <button class="cart-button" onclick="openCart()">
+                🛒 <span class="cart-count" id="cartCount">0</span>
+            </button>
+
+        </div>
+    </div>
+</header>
+
+<main>
+
+<!-- APRESENTAÇÃO -->
+
+<section class="hero" id="inicio">
+    <div class="hero-content">
+
+        <div>
+            <span class="hero-label">A tua próxima escolha está aqui</span>
+
+            <h1>
+                Os teus favoritos.<br>
+                <span>À tua maneira.</span>
+            </h1>
+
+            <p>
+                Descobre equipamentos dos teus clubes favoritos
+                e perfumes de várias marcas. Escolhe os teus produtos
+                e encomenda sem sair de casa.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#destaques" class="primary-button">
+                    Descobrir produtos
+                </a>
+
+                <a href="#como-encomendar" class="secondary-button">
+                    Como encomendar
+                </a>
+            </div>
+        </div>
+
+        <img
+            class="hero-image"
+            id="heroPhoto"
+            src="orkap.jpg"
+            alt="Equipamento desportivo e futebol"
+        >
+
+    </div>
+</section>
+
+<!-- BENEFÍCIOS -->
+
+<section class="benefits">
+
+    <div class="benefit">
+        <span class="benefit-icon">⚽</span>
+        <div>
+            <strong>Os teus clubes favoritos</strong>
+            <small>Equipamentos de vários clubes</small>
+        </div>
+    </div>
+
+    <div class="benefit">
+        <span class="benefit-icon">🌸</span>
+        <div>
+            <strong>Perfumes de várias marcas</strong>
+            <small>Escolhe a fragrância ideal</small>
+        </div>
+    </div>
+
+    <div class="benefit">
+        <span class="benefit-icon">📦</span>
+        <div>
+            <strong>Encomenda online</strong>
+            <small>Compra com um processo simples</small>
+        </div>
+    </div>
+
+</section>
+
+<!-- PRODUTOS EM DESTAQUE -->
+
+<section class="section" id="destaques">
+    <div class="section-inner">
+
+        <div class="section-heading">
+            <div>
+                <div class="section-tag">Escolhas Orkap</div>
+                <h2>Produtos em destaque</h2>
+                <p>Descobre alguns dos produtos que podes encomendar.</p>
+            </div>
+        </div>
+
+        <div class="products-grid" id="featuredProducts"></div>
+
+    </div>
+</section>
+
+<!-- EQUIPAMENTOS -->
+
+<section class="section soft" id="equipamentos">
+    <div class="section-inner">
+
+        <div class="section-heading">
+            <div>
+                <div class="section-tag">Paixão pelo futebol</div>
+                <h2>Equipamentos dos teus clubes</h2>
+                <p>
+                    Procura o teu clube e consulta os equipamentos
+                    disponíveis para encomenda.
+                </p>
+            </div>
+        </div>
+
+        <div class="club-filters" id="clubFilters">
+
+            <button class="filter-button active"
+                    onclick="filterClub('todos', this)">
+                Todos os clubes
+            </button>
+
+            <button class="filter-button"
+                    onclick="filterClub('Real Madrid', this)">
+                Real Madrid
+            </button>
+
+            <button class="filter-button"
+                    onclick="filterClub('Barcelona', this)">
+                Barcelona
+            </button>
+
+            <button class="filter-button"
+                    onclick="filterClub('Bayern', this)">
+                Bayern
+            </button>
+
+            <button class="filter-button"
+                    onclick="filterClub('Manchester City', this)">
+                Manchester City
+            </button>
+
+            <button class="filter-button"
+                    onclick="filterClub('Manchester United', this)">
+                Manchester United
+            </button>
+
+            <button class="filter-button"
+                    onclick="filterClub('Liverpool', this)">
+                Liverpool
+            </button>
+
+            <button class="filter-button"
+                    onclick="filterClub('Arsenal', this)">
+                Arsenal
+            </button>
+
+            <button class="filter-button"
+                    onclick="filterClub('PSG', this)">
+                PSG
+            </button>
+
+        </div>
+
+        <div class="products-grid" id="equipmentProducts"></div>
+
+    </div>
+</section>
+
+<!-- PERFUMES -->
+
+<section class="section" id="perfumes">
+    <div class="section-inner">
+
+        <div class="section-heading">
+            <div>
+                <div class="section-tag">Perfumes e fragrâncias</div>
+                <h2>Encontra a tua fragrância</h2>
+                <p>
+                    Perfumes de diferentes marcas para diferentes
+                    gostos e ocasiões.
+                </p>
+            </div>
+        </div>
+
+        <div class="products-grid" id="perfumeProducts"></div>
+
+    </div>
+</section>
+
+
+
+<!-- COMO ENCOMENDAR -->
+
+<section class="section" id="como-encomendar">
+    <div class="section-inner">
+
+        <div class="order-info">
+
+            <div>
+                <div class="section-tag">Simples e transparente</div>
+
+                <h2>Como funciona a tua encomenda?</h2>
+
+                <p>
+                    Escolhe os produtos, adiciona-os ao carrinho
+                    e envia o teu pedido pelo WhatsApp.
+                    As encomendas são realizadas por encomenda.
+                </p>
+
+                <br>
+
+                <p>
+                    O pagamento inicial corresponde a 60% do valor
+                    total. Os restantes 40% são pagos posteriormente,
+                    conforme as condições acordadas para a encomenda.
+                </p>
+            </div>
+
+            <div class="payment-card">
+
+                <div class="payment-line">
+                    <span>Valor total</span>
+                    <strong>100%</strong>
+                </div>
+
+                <div class="payment-line">
+                    <span>Pagamento inicial</span>
+                    <strong>60%</strong>
+                </div>
+
+                <div class="payment-line">
+                    <span>Valor restante</span>
+                    <strong>40%</strong>
+                </div>
+
+                <div class="payment-line">
+                    <span>Moedas disponíveis</span>
+                    <strong>Kz / EUR</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- CONTACTO -->
+
+<section class="section" id="contacto">
+    <div class="section-inner">
+
+        <div class="contact-box">
+
+            <div>
+                <h2>Encontraste o que procuravas?</h2>
+
+                <p>
+                    Fala connosco para consultar disponibilidade,
+                    confirmar modelos e realizar a tua encomenda.
+                </p>
+            </div>
+
+            <button class="contact-button" onclick="contactWhatsApp()">
+                Falar pelo WhatsApp →
+            </button>
+
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <strong>Orkap</strong><br>
+    A tua loja online de equipamentos e perfumes.<br>
+    Todos os produtos estão sujeitos a confirmação de disponibilidade.
+</footer>
+
+<!-- CARRINHO -->
+
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+
+<aside class="cart-panel" id="cartPanel">
+
+    <div class="cart-header">
+        <h2>O teu carrinho</h2>
+        <button class="close-cart" onclick="closeCart()">✕</button>
+    </div>
+
+    <div class="cart-items" id="cartItems"></div>
+
+    <div class="cart-footer" id="cartFooter">
+
+        <div class="cart-total-line">
+            <span>Subtotal</span>
+            <span id="cartSubtotal">0 Kz</span>
+        </div>
+
+        <div class="cart-total-line total">
+            <span>Total</span>
+            <span id="cartTotal">0 Kz</span>
+        </div>
+
+        <div class="cart-total-line deposit">
+            <span>Pagamento inicial (60%)</span>
+            <strong id="cartDeposit">0 Kz</strong>
+        </div>
+
+        <div class="cart-total-line">
+            <span>Restante (40%)</span>
+            <span id="cartRemaining">0 Kz</span>
+        </div>
+
+        <button class="checkout-button" onclick="checkout()">
+            Encomendar pelo WhatsApp
+        </button>
+
+        <p class="cart-note">
+            Os valores são calculados com base nos preços indicados
+            nos produtos. Confirma a disponibilidade antes do pagamento.
+        </p>
+
+    </div>
+
+</aside>
+
+<!-- CONFIGURAÇÃO DAS IMAGENS: EDITA OS CAMINHOS AQUI -->
+
+<div id="orkap-image-config" hidden>
+
+    <!-- Imagem do perfil e imagem principal -->
+
+    <img data-imagem="perfil" src="perfil.png" alt="">
+    <img data-imagem="apresentacao" src="orkap.jpg" alt="">
+
+    <!-- Equipamentos -->
+
+    <img data-produto="rm-demo" src="re.jpg" alt="">
+
+    <img data-produto="barca-demo"
+         src="bar.jpg"
+         alt="">
+
+    <img data-produto="bayern-demo"
+         src="bay.jpg"
+         alt="">
+
+    <img data-produto="city-demo"
+         src="ci.jpg"
+         alt="">
+
+    <img data-produto="united-demo"
+         src="un.jpg"
+         alt="">
+
+    <img data-produto="liverpool-demo"
+         src="li.jpg"
+         alt="">
+
+    <img data-produto="arsenal-demo"
+         src="ar.jpg"
+         alt="">
+
+    <img data-produto="psg-demo"
+         src="psg.jpg"
+         alt="">
+
+    <!-- Perfumes -->
+
+    <img data-produto="dior-demo"
+         src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=700&q=80"
+         alt="">
+
+    <img data-produto="chanel-demo"
+         src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=700&q=80"
+         alt="">
+
+    <img data-produto="ysl-demo"
+         src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=700&q=80"
+         alt="">
+
+    <img data-produto="armani-demo"
+         src="https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=700&q=80"
+         alt="">
+
+</div>
+
+<!-- FIREBASE -->
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+<script>
+
+/* CONFIGURAÇÃO FIREBASE */
+
+const firebaseConfig = {
+    apiKey: "AIzaSyAiQo9h8luDPyLLuPHKauiFX7b7oumRQ",
+    authDomain: "orkap-d13c6.firebaseapp.com",
+    databaseURL: "https://orkap-d13c6-default-rtdb.firebaseio.com",
+    projectId: "orkap-d13c6",
+    storageBucket: "orkap-d13c6.firebasestorage.app",
+    messagingSenderId: "571248205991",
+    appId: "1:571248205991:web:65dca626cee2be2f74fb82"
+};
+
+let database = null;
+
+try {
+    firebase.initializeApp(firebaseConfig);
+    database = firebase.database();
+} catch (error) {
+    console.warn("Firebase indisponível:", error);
+}
+
+/* CONTACTO */
+
+const WHATSAPP = "351936526221";
+
+/* LER AS IMAGENS CONFIGURADAS NO HTML */
+
+function getHtmlProductImage(productId) {
+    const image = document.querySelector(
+        '#orkap-image-config [data-produto="' + productId + '"]'
+    );
+
+    return image ? image.getAttribute("src") : "";
+}
+
+function applyHtmlProductImages(productList) {
+    return productList.map(product => {
+        const htmlImage = getHtmlProductImage(product.id);
+
+        return {
+            ...product,
+            imagem: htmlImage || product.imagem
+        };
+    });
+}
+
+function applyHtmlMainImages() {
+    const profileImage = document.querySelector(
+        '#orkap-image-config [data-imagem="perfil"]'
+    );
+
+    const presentationImage = document.querySelector(
+        '#orkap-image-config [data-imagem="apresentacao"]'
+    );
+
+    if (profileImage) {
+        document.querySelector(".profile-photo").src =
+            profileImage.getAttribute("src");
+    }
+
+    if (presentationImage) {
+        document.getElementById("heroPhoto").src =
+            presentationImage.getAttribute("src");
+    }
+}
+
+applyHtmlMainImages();
+
+/*
+    PRODUTOS DE DEMONSTRAÇÃO
+
+    Os preços abaixo são exemplos editáveis, não cotações
+    confirmadas de produtos oficiais.
+
+    As imagens são configuradas na secção HTML
+    "CONFIGURAÇÃO DAS IMAGENS".
+*/
+
+const demoProducts = [
+
+    /* EQUIPAMENTOS */
+
+    {
+        id: "rm-demo",
+        nome: "Equipamento Real Madrid",
+        categoria: "Equipamentos",
+        marca: "Real Madrid",
+        descricao: "Indica a época, o modelo e o tamanho pretendidos.",
+        precoKz: 25000,
+        precoEUR: 40,
+        ativo: true,
+        epoca: "Confirmar época"
+    },
+
+    {
+        id: "barca-demo",
+        nome: "Equipamento Barcelona",
+        categoria: "Equipamentos",
+        marca: "Barcelona",
+        descricao: "Consulta os modelos e tamanhos disponíveis.",
+        precoKz: 25000,
+        precoEUR: 40,
+        destaque: true,
+        ativo: true,
+        epoca: "Confirmar época"
+    },
+
+    {
+        id: "bayern-demo",
+        nome: "Equipamento Bayern",
+        categoria: "Equipamentos",
+        marca: "Bayern",
+        descricao: "Modelo e época a confirmar antes da encomenda.",
+        precoKz: 25000,
+        precoEUR: 40,
+        destaque: false,
+        ativo: true,
+        epoca: "Confirmar época"
+    },
+
+    {
+        id: "city-demo",
+        nome: "Equipamento Manchester City",
+        categoria: "Equipamentos",
+        marca: "Manchester City",
+        descricao: "Consulta os modelos e tamanhos disponíveis.",
+        precoKz: 25000,
+        precoEUR: 40,
+        destaque: true,
+        ativo: true,
+        epoca: "Confirmar época"
+    },
+
+    {
+        id: "united-demo",
+        nome: "Equipamento Manchester United",
+        categoria: "Equipamentos",
+        marca: "Manchester United",
+        descricao: "Indica o modelo e o tamanho pretendidos.",
+        precoKz: 25000,
+        precoEUR: 40,
+        destaque: false,
+        ativo: true,
+        epoca: "Confirmar época"
+    },
+
+    {
+        id: "liverpool-demo",
+        nome: "Equipamento Liverpool",
+        categoria: "Equipamentos",
+        marca: "Liverpool",
+        descricao: "Consulta os modelos e tamanhos disponíveis.",
+        precoKz: 25000,
+        precoEUR: 40,
+        destaque: false,
+        ativo: true,
+        epoca: "Confirmar época"
+    },
+
+    {
+        id: "arsenal-demo",
+        nome: "Equipamento Arsenal",
+        categoria: "Equipamentos",
+        marca: "Arsenal",
+        descricao: "Modelo e época a confirmar antes da encomenda.",
+        precoKz: 25000,
+        precoEUR: 40,
+        destaque: false,
+        ativo: true,
+        epoca: "Confirmar época"
+    },
+
+    {
+        id: "psg-demo",
+        nome: "Equipamento PSG",
+        categoria: "Equipamentos",
+        marca: "PSG",
+        descricao: "Consulta os modelos e tamanhos disponíveis.",
+        precoKz: 25000,
+        precoEUR: 40,
+        destaque: false,
+        ativo: true,
+        epoca: "Confirmar época"
+    },
+
+    /* PERFUMES */
+
+    {
+        id: "dior-demo",
+        nome: "Dior Sauvage",
+        categoria: "Perfumes",
+        marca: "Dior",
+        descricao: "Confirma a versão, capacidade e disponibilidade.",
+        precoKz: 30000,
+        precoEUR: 48,
+        destaque: true,
+        ativo: true
+    },
+
+    {
+        id: "chanel-demo",
+        nome: "Chanel Coco Mademoiselle",
+        categoria: "Perfumes",
+        marca: "Chanel",
+        descricao: "Confirma a versão e a capacidade pretendidas.",
+        precoKz: 35000,
+        precoEUR: 55,
+        destaque: true,
+        ativo: true
+    },
+
+    {
+        id: "ysl-demo",
+        nome: "Yves Saint Laurent Libre",
+        categoria: "Perfumes",
+        marca: "Yves Saint Laurent",
+        descricao: "Consulta as versões e capacidades disponíveis.",
+        precoKz: 32000,
+        precoEUR: 50,
+        destaque: true,
+        ativo: true
+    },
+
+    {
+        id: "armani-demo",
+        nome: "Acqua di Giò",
+        categoria: "Perfumes",
+        marca: "Giorgio Armani",
+        descricao: "Confirma a versão e a capacidade pretendidas.",
+        precoKz: 30000,
+        precoEUR: 48,
+        destaque: false,
+        ativo: true
+    }
+
+];
+
+let products = applyHtmlProductImages([...demoProducts]);
+let cart = [];
+let currentCurrency = "Kz";
+let currentClub = "todos";
+
+/* FORMATAÇÃO DE PREÇOS */
+
+function formatMoney(value) {
+    const amount = Number(value) || 0;
+
+    if (currentCurrency === "EUR") {
+        return amount.toLocaleString("pt-PT", {
+            style: "currency",
+            currency: "EUR"
+        });
+    }
+
+    return amount.toLocaleString("pt-PT") + " Kz";
+}
+
+function getPrice(product) {
+    return currentCurrency === "EUR"
+        ? Number(product.precoEUR) || 0
+        : Number(product.precoKz) || 0;
+}
+
+/* IMAGENS */
+
+function safeImage(url) {
+    return url || "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=80";
+}
+
+/* CARTÕES DE PRODUTOS */
+
+function createProductCard(product) {
+
+    const badge = product.categoria === "Equipamentos"
+        ? (product.epoca && product.epoca !== "Confirmar época"
+            ? product.epoca
+            : "Por encomenda")
+        : "Por encomenda";
+
+    return `
+        <article class="product-card">
+
+            <div class="product-image-wrap">
+
+                <img
+                    class="product-image"
+                    src="${safeImage(product.imagem)}"
+                    alt="${product.nome}"
+                    loading="lazy"
+                >
+
+                <span class="product-badge">${badge}</span>
+
+            </div>
+
+            <div class="product-info">
+
+                <div class="product-category">
+                    ${product.marca || product.categoria || "Produto"}
+                </div>
+
+                <h3>${product.nome}</h3>
+
+                <p class="product-description">
+                    ${product.descricao || "Produto disponível por encomenda."}
+                </p>
+
+                <div class="product-price">
+                    ${formatMoney(getPrice(product))}
+                </div>
+
+                <div class="product-price-note">
+                    Preço de referência · confirmar disponibilidade
+                </div>
+
+                <button
+                    class="add-cart"
+                    onclick="addToCart('${product.id}')"
+                >
+                    + Adicionar ao carrinho
+                </button>
+
+            </div>
+
+        </article>
+    `;
+}
+
+/* MOSTRAR PRODUTOS */
+
+function renderProducts() {
+
+    const activeProducts = products.filter(p => p.ativo !== false);
+
+    const featured = activeProducts
+        .filter(p => p.destaque === true)
+        .slice(0, 4);
+
+    const equipment = activeProducts.filter(p =>
+        p.categoria === "Equipamentos" &&
+        (
+            currentClub === "todos" ||
+            p.marca === currentClub
+        )
+    );
+
+    const perfumes = activeProducts.filter(p =>
+        p.categoria === "Perfumes"
+    );
+
+    const newest = [...activeProducts]
+        .sort((a, b) =>
+            (Number(b.criadoEm) || 0) - (Number(a.criadoEm) || 0)
+        )
+        .slice(0, 4);
+
+    document.getElementById("featuredProducts").innerHTML =
+        featured.length
+            ? featured.map(createProductCard).join("")
+            : `<div class="empty-products">
+                Ainda não existem produtos destacados.
+              </div>`;
+
+    document.getElementById("equipmentProducts").innerHTML =
+        equipment.length
+            ? equipment.map(createProductCard).join("")
+            : `<div class="empty-products">
+                Não existem equipamentos disponíveis nesta seleção.
+              </div>`;
+
+    document.getElementById("perfumeProducts").innerHTML =
+        perfumes.length
+            ? perfumes.map(createProductCard).join("")
+            : `<div class="empty-products">
+                Ainda não existem perfumes disponíveis.
+              </div>`;
+
+    document.getElementById("newProducts").innerHTML =
+        newest.length
+            ? newest.map(createProductCard).join("")
+            : `<div class="empty-products">
+                Ainda não existem novidades.
+              </div>`;
+
+    updateCart();
+}
+
+/* FILTRO POR CLUBE */
+
+function filterClub(club, button) {
+
+    currentClub = club;
+
+    document.querySelectorAll(".filter-button").forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    renderProducts();
+}
+
+/* MOEDA */
+
+document.getElementById("currency").addEventListener("change", function() {
+
+    currentCurrency = this.value;
+
+    renderProducts();
+
+});
+
+/* CARRINHO */
+
+function addToCart(productId) {
+
+    const product = products.find(p =>
+        String(p.id) === String(productId)
+    );
+
+    if (!product) return;
+
+    const existing = cart.find(item =>
+        String(item.id) === String(productId)
+    );
+
+    if (existing) {
+        existing.quantity++;
+    } else {
+        cart.push({
+            id: product.id,
+            quantity: 1
+        });
+    }
+
+    updateCart();
+    openCart();
+}
+
+function changeQuantity(productId, amount) {
+
+    const item = cart.find(item =>
+        String(item.id) === String(productId)
+    );
+
+    if (!item) return;
+
+    item.quantity += amount;
+
+    if (item.quantity <= 0) {
+        cart = cart.filter(item =>
+            String(item.id) !== String(productId)
+        );
+    }
+
+    updateCart();
+}
+
+function removeFromCart(productId) {
+
+    cart = cart.filter(item =>
+        String(item.id) !== String(productId)
+    );
+
+    updateCart();
+}
+
+function getCartDetails() {
+
+    return cart.map(item => {
+
+        const product = products.find(p =>
+            String(p.id) === String(item.id)
+        );
+
+        if (!product) return null;
+
+        return {
+            ...product,
+            quantity: item.quantity,
+            lineTotal: getPrice(product) * item.quantity
+        };
+
+    }).filter(Boolean);
+}
+
+function updateCart() {
+
+    const items = getCartDetails();
+
+    const count = items.reduce(
+        (total, item) => total + item.quantity, 0
+    );
+
+    const total = items.reduce(
+        (sum, item) => sum + item.lineTotal, 0
+    );
+
+    const deposit = total * 0.60;
+    const remaining = total * 0.40;
+
+    document.getElementById("cartCount").textContent = count;
+
+    document.getElementById("cartSubtotal").textContent =
+        formatMoney(total);
+
+    document.getElementById("cartTotal").textContent =
+        formatMoney(total);
+
+    document.getElementById("cartDeposit").textContent =
+        formatMoney(deposit);
+
+    document.getElementById("cartRemaining").textContent =
+        formatMoney(remaining);
+
+    const cartItems = document.getElementById("cartItems");
+
+    if (!items.length) {
+
+        cartItems.innerHTML = `
+            <div class="cart-empty">
+                <div style="font-size:38px;margin-bottom:12px">🛒</div>
+                O teu carrinho está vazio.<br>
+                Descobre os produtos e adiciona os teus favoritos.
+            </div>
+        `;
+
+        return;
+    }
+
+    cartItems.innerHTML = items.map(item => `
+
+        <div class="cart-item">
+
+            <img src="${safeImage(item.imagem)}" alt="${item.nome}">
+
+            <div>
+
+                <h4>${item.nome}</h4>
+
+                <div class="cart-item-price">
+                    ${formatMoney(item.lineTotal)}
+                </div>
+
+                <div class="quantity-controls">
+
+                    <button onclick="changeQuantity('${item.id}', -1)">
+                        −
+                    </button>
+
+                    <span>${item.quantity}</span>
+
+                    <button onclick="changeQuantity('${item.id}', 1)">
+                        +
+                    </button>
+
+                    <button
+                        class="remove-item"
+                        onclick="removeFromCart('${item.id}')"
+                        aria-label="Remover produto"
+                    >
+                        Remover
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `).join("");
+}
+
+/* ABRIR E FECHAR CARRINHO */
+
+function openCart() {
+    document.getElementById("cartPanel").classList.add("open");
+    document.getElementById("cartOverlay").classList.add("open");
+    document.body.style.overflow = "hidden";
+}
+
+function closeCart() {
+    document.getElementById("cartPanel").classList.remove("open");
+    document.getElementById("cartOverlay").classList.remove("open");
+    document.body.style.overflow = "";
+}
+
+/* ENCOMENDAR */
+
+function checkout() {
+
+    const items = getCartDetails();
+
+    if (!items.length) {
+        alert("Adiciona primeiro os produtos ao carrinho.");
+        return;
+    }
+
+    const total = items.reduce(
+        (sum, item) => sum + item.lineTotal, 0
+    );
+
+    const deposit = total * 0.60;
+    const remaining = total * 0.40;
+
+    let message = "Olá Orkap! Gostaria de fazer uma encomenda:%0A%0A";
+
+    items.forEach(item => {
+
+        message +=
+            "• " + item.nome +
+            " | Quantidade: " + item.quantity +
+            " | " + formatMoney(item.lineTotal) +
+            "%0A";
+
+    });
+
+    message +=
+        "%0A*Moeda:* " + currentCurrency +
+        "%0A*Total:* " + formatMoney(total) +
+        "%0A*Pagamento inicial (60%):* " + formatMoney(deposit) +
+        "%0A*Restante (40%):* " + formatMoney(remaining) +
+        "%0A%0AGostaria de confirmar a disponibilidade, os modelos e as condições de pagamento.";
+
+    const url = "https://wa.me/" + WHATSAPP + "?text=" + message;
+
+    window.open(url, "_blank");
+}
+
+function contactWhatsApp() {
+
+    const message = encodeURIComponent(
+        "Olá Orkap! Gostaria de consultar os produtos disponíveis."
+    );
+
+    window.open(
+        "https://wa.me/" + WHATSAPP + "?text=" + message,
+        "_blank"
+    );
+}
+
+/* FIREBASE: CATÁLOGO DINÂMICO */
+
+if (database) {
+
+    database.ref("produtos").on("value", snapshot => {
+
+        if (!snapshot.exists()) {
+            products = applyHtmlProductImages([...demoProducts]);
+            renderProducts();
+            return;
+        }
+
+        const firebaseProducts = [];
+
+        snapshot.forEach(child => {
+
+            const data = child.val();
+
+            firebaseProducts.push({
+                ...data,
+                id: child.key,
+                nome: data.nome || "Produto sem nome",
+                categoria: data.categoria || "Outros",
+                marca: data.marca || "",
+                descricao: data.descricao || "",
+                precoKz: Number(data.precoKz) || 0,
+                precoEUR: Number(data.precoEUR) || 0,
+                imagem: data.imagem || "",
+                ativo: data.ativo !== false
+            });
+
+        });
+
+        products = applyHtmlProductImages(firebaseProducts);
+
+        renderProducts();
+
+    }, error => {
+
+        console.error("Erro ao carregar produtos:", error);
+
+        products = applyHtmlProductImages([...demoProducts]);
+
+        renderProducts();
+
+    });
+
+} else {
+
+    renderProducts();
+
+}
+
+</script>
+
+</body>
+</html>
