@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Orkap | A tua loja online</title>
-
 <meta name="description" content="Descobre equipamentos desportivos e perfumes de várias marcas na Orkap. Compras online, por encomenda.">
 
 <style>
@@ -37,8 +36,7 @@ body {
     color: var(--texto);
 }
 
-button,
-select {
+button, select, input {
     font: inherit;
 }
 
@@ -51,8 +49,6 @@ a {
     text-decoration: none;
 }
 
-/* BARRA SUPERIOR */
-
 .top-bar {
     background: var(--azul);
     color: white;
@@ -61,8 +57,6 @@ a {
     font-size: 12px;
     letter-spacing: .3px;
 }
-
-/* CABEÇALHO */
 
 header {
     position: sticky;
@@ -324,30 +318,60 @@ nav a:hover {
     margin-bottom: 10px;
 }
 
-/* CLUBES */
+/* PESQUISA DE CLUBES */
 
-.club-filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 28px;
-}
-
-.filter-button {
-    border: 1px solid var(--borda);
+.club-finder {
     background: white;
-    padding: 10px 15px;
-    border-radius: 30px;
-    color: var(--texto);
-    font-size: 12px;
-    transition: .2s;
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 25px;
 }
 
-.filter-button:hover,
-.filter-button.active {
+.club-finder p {
+    font-size: 12px;
+    color: var(--cinza);
+    line-height: 1.7;
+    margin-bottom: 14px;
+}
+
+.finder-fields {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    background: white;
+    color: var(--texto);
+    font-size: 13px;
+    min-width: 0;
+}
+
+.finder-button {
+    margin-top: 13px;
+    border: none;
     background: var(--azul);
-    border-color: var(--azul);
     color: white;
+    border-radius: 8px;
+    padding: 13px 18px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.finder-button:hover {
+    background: #3e6895;
+}
+
+.finder-note {
+    font-size: 11px;
+    color: var(--cinza);
+    margin-top: 10px;
+    line-height: 1.6;
 }
 
 /* PRODUTOS */
@@ -460,6 +484,128 @@ nav a:hover {
     color: var(--cinza);
     border: 1px dashed var(--borda);
     border-radius: 12px;
+}
+
+/* TAMANHOS E QUANTIDADE DOS EQUIPAMENTOS */
+
+.equipment-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+    margin: 12px 0;
+}
+
+.equipment-options select {
+    width: 100%;
+    min-width: 0;
+    padding: 9px 5px;
+    border: 1px solid var(--borda);
+    border-radius: 7px;
+    background: white;
+    color: var(--texto);
+    font-size: 11px;
+}
+
+.card-quantity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 10px 0;
+}
+
+.card-quantity button {
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--borda);
+    background: white;
+    color: var(--azul);
+    border-radius: 7px;
+    font-weight: bold;
+}
+
+.card-quantity span {
+    min-width: 20px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* LISTAS COMPACTAS DE EQUIPAMENTOS E PERFUMES */
+
+.products-grid.compact {
+    gap: 14px;
+}
+
+.products-grid.compact:not(.expanded) > .product-card:nth-child(n+5) {
+    display: none;
+}
+
+.products-grid.compact .product-image {
+    height: 175px;
+}
+
+.products-grid.compact .product-info {
+    padding: 12px;
+}
+
+.products-grid.compact .product-category {
+    font-size: 9px;
+    margin-bottom: 6px;
+}
+
+.products-grid.compact .product-info h3 {
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.products-grid.compact .product-description {
+    font-size: 11px;
+    line-height: 1.5;
+    min-height: 32px;
+}
+
+.products-grid.compact .product-price {
+    font-size: 16px;
+    margin: 10px 0 4px;
+}
+
+.products-grid.compact .product-price-note {
+    font-size: 9px;
+    margin-bottom: 9px;
+}
+
+.products-grid.compact .product-badge {
+    top: 8px;
+    left: 8px;
+    padding: 5px 8px;
+    font-size: 9px;
+}
+
+.products-grid.compact .add-cart {
+    padding: 10px 6px;
+    font-size: 10px;
+}
+
+.product-list-toggle {
+    display: block;
+    margin: 22px auto 0;
+    padding: 11px 18px;
+    background: white;
+    color: var(--azul);
+    border: 1px solid var(--azul);
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    transition: background .2s;
+}
+
+.product-list-toggle:hover {
+    background: var(--azul-claro);
+}
+
+.product-list-toggle[hidden] {
+    display: none;
 }
 
 /* CATEGORIAS */
@@ -623,18 +769,31 @@ nav a:hover {
     z-index: 201;
     right: 0;
     top: 0;
-    height: 100%;
-    width: min(430px, 100%);
+    height: 100dvh;
+    width: min(600px, 100%);
     background: white;
     padding: 23px;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    box-sizing: border-box;
     transform: translateX(100%);
     transition: transform .3s;
 }
 
 .cart-panel.open {
     transform: translateX(0);
+}
+
+.cart-items {
+    flex: 0 0 auto;
+    overflow: visible;
+}
+
+.cart-footer {
+    flex-shrink: 0;
 }
 
 .cart-header {
@@ -657,11 +816,7 @@ nav a:hover {
     padding: 9px 12px;
 }
 
-.cart-items {
-    flex: 1;
-    overflow-y: auto;
-    padding: 15px 0;
-}
+
 
 .cart-item {
     display: grid;
@@ -694,6 +849,7 @@ nav a:hover {
     align-items: center;
     gap: 10px;
     margin-top: 10px;
+    flex-wrap: wrap;
 }
 
 .quantity-controls button {
@@ -708,6 +864,8 @@ nav a:hover {
     margin-left: auto;
     color: #c23b3b;
     border: none !important;
+    width: auto !important;
+    padding: 0 5px;
 }
 
 .cart-footer {
@@ -758,6 +916,41 @@ nav a:hover {
     padding: 45px 10px;
     font-size: 13px;
     line-height: 1.8;
+}
+
+/* DADOS DO CLIENTE */
+
+.customer-form {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--borda);
+    margin-bottom: 14px;
+}
+
+.customer-form h3 {
+    font-size: 15px;
+    margin-bottom: 12px;
+}
+
+.customer-form input {
+    display: block;
+    width: 100%;
+    padding: 11px;
+    margin-bottom: 9px;
+    border: 1px solid var(--borda);
+    border-radius: 7px;
+    font-size: 12px;
+    color: var(--texto);
+    background: white;
+}
+
+.delivery-notice {
+    background: var(--azul-suave);
+    border-radius: 8px;
+    padding: 11px;
+    font-size: 11px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+    color: var(--texto);
 }
 
 /* RODAPÉ */
@@ -903,6 +1096,64 @@ footer {
         font-size: 11px;
     }
 
+    /* PRODUTOS COMPACTOS NO TELEMÓVEL */
+
+    .products-grid.compact {
+        gap: 10px;
+    }
+
+    .products-grid.compact .product-image {
+        height: 135px;
+    }
+
+    .products-grid.compact .product-info {
+        padding: 9px;
+    }
+
+    .products-grid.compact .product-category {
+        font-size: 8px;
+        letter-spacing: .4px;
+    }
+
+    .products-grid.compact .product-info h3 {
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
+    .products-grid.compact .product-description {
+        font-size: 10px;
+        line-height: 1.4;
+        min-height: 28px;
+    }
+
+    .products-grid.compact .product-price {
+        font-size: 14px;
+        margin-top: 9px;
+    }
+
+    .products-grid.compact .product-price-note {
+        font-size: 9px;
+        line-height: 1.4;
+    }
+
+    .products-grid.compact .add-cart {
+        padding: 9px 4px;
+        font-size: 10px;
+    }
+
+    .products-grid.compact .product-badge {
+        top: 6px;
+        left: 6px;
+        padding: 4px 6px;
+        font-size: 8px;
+    }
+
+    .product-list-toggle {
+        margin-top: 18px;
+        padding: 10px 15px;
+        font-size: 11px;
+    }
+
     .category-grid {
         grid-template-columns: 1fr;
     }
@@ -929,6 +1180,14 @@ footer {
     .contact-button {
         white-space: normal;
     }
+
+    .finder-fields {
+        grid-template-columns: 1fr;
+    }
+
+    .cart-panel {
+        padding: 17px;
+    }
 }
 
 @media (max-width: 360px) {
@@ -942,6 +1201,10 @@ footer {
 
     .product-image {
         height: 160px;
+    }
+
+    .products-grid.compact .product-image {
+        height: 120px;
     }
 }
 </style>
@@ -957,14 +1220,10 @@ footer {
     <div class="header-content">
 
         <a href="#inicio" class="brand">
-            <img
-                src="perfil.png"
-                alt="Orkap"
-                class="profile-photo"
-            >
+            <img src="perfil.png" alt="Orkap" class="profile-photo">
 
             <div>
-                <div class="brand-name">Orkap</div>
+                <div class="brand-name">Novo Conveito De Shopping</div>
                 <small>A TUA LOJA ONLINE</small>
             </div>
         </a>
@@ -973,30 +1232,25 @@ footer {
             <a href="#inicio">Início</a>
             <a href="#equipamentos">Equipamentos</a>
             <a href="#perfumes">Perfumes</a>
-            <a href="#destaques">Mais vendidos</a>
-            <a href="#novidades">Novidades</a>
+            <a href="#como-encomendar">Encomendas</a>
             <a href="#contacto">Contacto</a>
         </nav>
 
         <div class="header-actions">
-
-            <select id="currency" class="currency-select"
-                    aria-label="Selecionar moeda">
-                <option value="Kz">Kz</option>
-                <option value="EUR">€ EUR</option>
+            <select id="currency" class="currency-select" aria-label="Selecionar moeda">
+				 <option value="EUR">€ EUR</option>
+				 <option value="Kz">Kz</option>
+          
             </select>
 
             <button class="cart-button" onclick="openCart()">
                 🛒 <span class="cart-count" id="cartCount">0</span>
             </button>
-
         </div>
     </div>
 </header>
 
 <main>
-
-<!-- APRESENTAÇÃO -->
 
 <section class="hero" id="inicio">
     <div class="hero-content">
@@ -1016,27 +1270,15 @@ footer {
             </p>
 
             <div class="hero-buttons">
-                <a href="#destaques" class="primary-button">
-                    Descobrir produtos
-                </a>
-
-                <a href="#como-encomendar" class="secondary-button">
-                    Como encomendar
-                </a>
+                <a href="#equipamentos" class="primary-button">Descobrir produtos</a>
+                <a href="#como-encomendar" class="secondary-button">Como encomendar</a>
             </div>
         </div>
 
-        <img
-            class="hero-image"
-            id="heroPhoto"
-            src="orkap.jpg"
-            alt="Equipamento desportivo e futebol"
-        >
-
+        <img class="hero-image" id="heroPhoto" src="orkap.jpg"
+             alt="Equipamento desportivo e futebol">
     </div>
 </section>
-
-<!-- BENEFÍCIOS -->
 
 <section class="benefits">
 
@@ -1066,25 +1308,7 @@ footer {
 
 </section>
 
-<!-- PRODUTOS EM DESTAQUE -->
-
-<section class="section" id="destaques">
-    <div class="section-inner">
-
-        <div class="section-heading">
-            <div>
-                <div class="section-tag">Escolhas Orkap</div>
-                <h2>Produtos em destaque</h2>
-                <p>Descobre alguns dos produtos que podes encomendar.</p>
-            </div>
-        </div>
-
-        <div class="products-grid" id="featuredProducts"></div>
-
-    </div>
-</section>
-
-<!-- EQUIPAMENTOS -->
+<!-- EQUIPAMENTOS E ESCOLHA DE CLUBES -->
 
 <section class="section soft" id="equipamentos">
     <div class="section-inner">
@@ -1092,64 +1316,65 @@ footer {
         <div class="section-heading">
             <div>
                 <div class="section-tag">Paixão pelo futebol</div>
-                <h2>Equipamentos dos teus clubes</h2>
-                <p>
-                    Procura o teu clube e consulta os equipamentos
-                    disponíveis para encomenda.
-                </p>
+                <h2>Encontra o teu clube</h2>
+                <p>Escolhe o país, o clube e o tipo de equipamento que pretendes encomendar.</p>
             </div>
         </div>
 
-        <div class="club-filters" id="clubFilters">
+        <div class="club-finder">
 
-            <button class="filter-button active"
-                    onclick="filterClub('todos', this)">
-                Todos os clubes
+            <p>
+                Seleciona o país, escolhe o teu clube e indica o tipo de equipamento
+                que pretendes encomendar.
+            </p>
+
+            <div class="finder-fields">
+
+                <select id="clubCountry" class="form-control"
+                        onchange="updateClubOptions()">
+                    <option value="Espanha">Espanha</option>
+                    <option value="Inglaterra">Inglaterra</option>
+                    <option value="Alemanha">Alemanha</option>
+                    <option value="França">França</option>
+                    <option value="Itália">Itália</option>
+                    <option value="Portugal">Portugal</option>
+                    <option value="Brasil">Brasil</option>
+                </select>
+
+                <select id="clubChoice" class="form-control">
+                </select>
+
+                <select id="equipmentType" class="form-control"
+                        onchange="updateCustomPrice()">
+                    <option value="normal">Equipamento normal</option>
+                    <option value="treino">Equipamento de treino</option>
+                    <option value="personalizado">Camisola personalizada (+20%)</option>
+                </select>
+
+            </div>
+
+            <p class="finder-note" id="customPrice">
+                Preço de referência: 52.000 Kz / 40 €
+            </p>
+
+            <button class="finder-button" onclick="addSelectedClub()">
+                + Adicionar referência ao carrinho
             </button>
 
-            <button class="filter-button"
-                    onclick="filterClub('Real Madrid', this)">
-                Real Madrid
-            </button>
-
-            <button class="filter-button"
-                    onclick="filterClub('Barcelona', this)">
-                Barcelona
-            </button>
-
-            <button class="filter-button"
-                    onclick="filterClub('Bayern', this)">
-                Bayern
-            </button>
-
-            <button class="filter-button"
-                    onclick="filterClub('Manchester City', this)">
-                Manchester City
-            </button>
-
-            <button class="filter-button"
-                    onclick="filterClub('Manchester United', this)">
-                Manchester United
-            </button>
-
-            <button class="filter-button"
-                    onclick="filterClub('Liverpool', this)">
-                Liverpool
-            </button>
-
-            <button class="filter-button"
-                    onclick="filterClub('Arsenal', this)">
-                Arsenal
-            </button>
-
-            <button class="filter-button"
-                    onclick="filterClub('PSG', this)">
-                PSG
-            </button>
+            <p class="finder-note">
+                Os preços apresentados são referências. Modelo, época, tamanho
+                e disponibilidade serão confirmados pelo WhatsApp.
+            </p>
 
         </div>
 
-        <div class="products-grid" id="equipmentProducts"></div>
+        <div class="products-grid compact" id="equipmentProducts"></div>
+
+        <button class="product-list-toggle"
+                id="equipmentToggle"
+                onclick="toggleProductList('equipment')">
+            Ver todos os equipamentos
+        </button>
 
     </div>
 </section>
@@ -1163,19 +1388,19 @@ footer {
             <div>
                 <div class="section-tag">Perfumes e fragrâncias</div>
                 <h2>Encontra a tua fragrância</h2>
-                <p>
-                    Perfumes de diferentes marcas para diferentes
-                    gostos e ocasiões.
-                </p>
+                <p>Perfumes de diferentes marcas para diferentes gostos e ocasiões.</p>
             </div>
         </div>
 
-        <div class="products-grid" id="perfumeProducts"></div>
+        <div class="products-grid compact" id="perfumeProducts"></div>
 
+        <button class="product-list-toggle"
+                id="perfumeToggle"
+                onclick="toggleProductList('perfumes')">
+            Ver todos os perfumes
+        </button>
     </div>
 </section>
-
-
 
 <!-- COMO ENCOMENDAR -->
 
@@ -1186,21 +1411,26 @@ footer {
 
             <div>
                 <div class="section-tag">Simples e transparente</div>
-
                 <h2>Como funciona a tua encomenda?</h2>
 
                 <p>
-                    Escolhe os produtos, adiciona-os ao carrinho
-                    e envia o teu pedido pelo WhatsApp.
-                    As encomendas são realizadas por encomenda.
+                    Escolhe os produtos, adiciona-os ao carrinho e envia
+                    o teu pedido pelo WhatsApp. As encomendas são realizadas
+                    por encomenda.
                 </p>
 
                 <br>
 
                 <p>
-                    O pagamento inicial corresponde a 60% do valor
-                    total. Os restantes 40% são pagos posteriormente,
-                    conforme as condições acordadas para a encomenda.
+                    O pagamento é integal.
+                </p>
+
+                <br>
+
+                <p>
+                    <strong>Prazo de entrega:</strong> até 7 dias, sujeito
+                    à confirmação da encomenda e disponibilidade dos produtos.
+                    Confirma as condições antes de efetuar o pagamento.
                 </p>
             </div>
 
@@ -1212,24 +1442,25 @@ footer {
                 </div>
 
                 <div class="payment-line">
-                    <span>Pagamento inicial</span>
-                    <strong>60%</strong>
+                    <span>Pagamento Integral</span>
+                    <strong>100%</strong>
                 </div>
 
-                <div class="payment-line">
-                    <span>Valor restante</span>
-                    <strong>40%</strong>
-                </div>
+         
 
                 <div class="payment-line">
                     <span>Moedas disponíveis</span>
                     <strong>Kz / EUR</strong>
                 </div>
 
+                <div class="payment-line">
+                    <span>Prazo previsto</span>
+                    <strong>Até 7 dias</strong>
+                </div>
+
             </div>
 
         </div>
-
     </div>
 </section>
 
@@ -1242,7 +1473,6 @@ footer {
 
             <div>
                 <h2>Encontraste o que procuravas?</h2>
-
                 <p>
                     Fala connosco para consultar disponibilidade,
                     confirmar modelos e realizar a tua encomenda.
@@ -1254,14 +1484,13 @@ footer {
             </button>
 
         </div>
-
     </div>
 </section>
 
 </main>
 
 <footer>
-    <strong>Orkap</strong><br>
+    <strong>Orkap - Novo Conceito De Shopping</strong><br>
     A tua loja online de equipamentos e perfumes.<br>
     Todos os produtos estão sujeitos a confirmação de disponibilidade.
 </footer>
@@ -1281,10 +1510,35 @@ footer {
 
     <div class="cart-footer" id="cartFooter">
 
-        <div class="cart-total-line">
-            <span>Subtotal</span>
-            <span id="cartSubtotal">0 Kz</span>
+        <form class="customer-form" id="customerForm"
+              onsubmit="return false;">
+
+            <h3>Dados para a encomenda</h3>
+
+            <input type="text" id="customerName"
+                   placeholder="Nome completo" autocomplete="name" required>
+
+            <input type="text" id="customerAddress"
+                   placeholder="Morada completa" autocomplete="street-address" required>
+
+            <input type="text" id="customerStreet"
+                   placeholder="Rua / bairro" required>
+
+            <input type="text" id="customerPostal"
+                   placeholder="Caixa postal (se aplicável)">
+
+            <input type="tel" id="customerPhone"
+                   placeholder="Telefone com WhatsApp" autocomplete="tel" required>
+
+        </form>
+
+        <div class="delivery-notice">
+            <strong>Entrega prevista:</strong> até 7 dias, sujeita à confirmação
+            da encomenda. Antes de pagar, confirma a disponibilidade e as
+            condições com a Orkap.
         </div>
+
+      
 
         <div class="cart-total-line total">
             <span>Total</span>
@@ -1292,88 +1546,93 @@ footer {
         </div>
 
         <div class="cart-total-line deposit">
-            <span>Pagamento inicial (60%)</span>
+            <span>Pagamento integral (100%)</span>
             <strong id="cartDeposit">0 Kz</strong>
         </div>
 
-        <div class="cart-total-line">
-            <span>Restante (40%)</span>
-            <span id="cartRemaining">0 Kz</span>
-        </div>
+      
 
         <button class="checkout-button" onclick="checkout()">
             Encomendar pelo WhatsApp
         </button>
 
         <p class="cart-note">
-            Os valores são calculados com base nos preços indicados
-            nos produtos. Confirma a disponibilidade antes do pagamento.
+            Os preços são valores de referência. A encomenda e as condições
+            de pagamento devem ser confirmadas antes de qualquer pagamento.
         </p>
 
     </div>
-
 </aside>
 
-<!-- CONFIGURAÇÃO DAS IMAGENS: EDITA OS CAMINHOS AQUI -->
+<!-- CONFIGURAÇÃO DAS IMAGENS -->
 
 <div id="orkap-image-config" hidden>
-
-    <!-- Imagem do perfil e imagem principal -->
 
     <img data-imagem="perfil" src="perfil.png" alt="">
     <img data-imagem="apresentacao" src="orkap.jpg" alt="">
 
-    <!-- Equipamentos -->
-
     <img data-produto="rm-demo" src="re.jpg" alt="">
+    <img data-produto="benfica-demo" src="ben.jpg" alt="">
+    <img data-produto="barca-demo" src="bar.jpg" alt="">
+    <img data-produto="sporting-demo" src="spor.jpg" alt="">
+    <img data-produto="united-demo" src="un.jpg" alt="">
+    <img data-produto="liverpool-demo" src="li.jpg" alt="">
+    <img data-produto="arsenal-demo" src="ar.jpg" alt="">
+    <img data-produto="psg-demo" src="psg.jpg" alt="">
 
-    <img data-produto="barca-demo"
-         src="bar.jpg"
+ <img data-produto="bayern-demo" src="bay.jpg" alt="">
+    <img data-produto="city-demo" src="city.jpg" alt="">
+   
+
+
+
+
+  <img data-produto="porto-demo" src="por.jpg" alt="">
+    <img data-produto="milan-demo" src="mil.jpg" alt="">
+    <img data-produto="juventus-demo" src="juve.jpg" alt="">
+    <img data-produto="inter-demo" src="inter.jpg" alt="">
+    <img data-produto="botafogo-demo" src="bota.jpg" alt="">
+    <img data-produto="fluminense-demo" src="flu.jpg" alt="">
+    <img data-produto="flamengo-demo" src="flame.jpg" alt="">
+    <img data-produto="santos-demo" src="santos.jpg" alt="">
+
+ <img data-produto="palmeiras-demo" src="palme.jpg" alt="">
+    <img data-produto="milan-demo" src="mil.jpg" alt="">
+    <img data-produto="corinthians-demo" src="cori.jpg" alt="">
+    <img data-produto="saopaulo-demo" src="saopaulo.jpg" alt="">
+    <img data-produto="gremio-demo" src="gremio.jpg" alt="">
+    <img data-produto="vasco-demo" src="vasco.jpg" alt="">
+    <img data-produto="internacional-demo" src="internacional.jpg" alt="">
+  
+
+
+
+
+
+
+
+    <img data-produto="rabanne-demo"
+         src="paco.jpg"
          alt="">
 
-    <img data-produto="bayern-demo"
-         src="bay.jpg"
-         alt="">
-
-    <img data-produto="city-demo"
-         src="ci.jpg"
-         alt="">
-
-    <img data-produto="united-demo"
-         src="un.jpg"
-         alt="">
-
-    <img data-produto="liverpool-demo"
-         src="li.jpg"
-         alt="">
-
-    <img data-produto="arsenal-demo"
-         src="ar.jpg"
-         alt="">
-
-    <img data-produto="psg-demo"
-         src="psg.jpg"
-         alt="">
-
-    <!-- Perfumes -->
-
-    <img data-produto="dior-demo"
-         src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=700&q=80"
-         alt="">
-
-    <img data-produto="chanel-demo"
-         src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=700&q=80"
+    <img data-produto="sauvage-demo"
+         src="Sau.jpg"
          alt="">
 
     <img data-produto="ysl-demo"
-         src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=700&q=80"
+         src="ysl.jpg"
          alt="">
 
-    <img data-produto="armani-demo"
-         src="https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=700&q=80"
+    <img data-produto="dolce-demo"
+         src="dolce-gabbana"
+         alt="">
+
+    <img data-produto="zara-demo"
+         src="zara.jpg"
          alt="">
 
 </div>
+
 
 <!-- FIREBASE -->
 
@@ -1407,7 +1666,7 @@ try {
 
 const WHATSAPP = "351936526221";
 
-/* LER AS IMAGENS CONFIGURADAS NO HTML */
+/* IMAGENS */
 
 function getHtmlProductImage(productId) {
     const image = document.querySelector(
@@ -1450,30 +1709,24 @@ function applyHtmlMainImages() {
 
 applyHtmlMainImages();
 
-/*
-    PRODUTOS DE DEMONSTRAÇÃO
-
-    Os preços abaixo são exemplos editáveis, não cotações
-    confirmadas de produtos oficiais.
-
-    As imagens são configuradas na secção HTML
-    "CONFIGURAÇÃO DAS IMAGENS".
-*/
+/* PRODUTOS DE DEMONSTRAÇÃO */
 
 const demoProducts = [
 
-    /* EQUIPAMENTOS */
+    /* ESPANHA */
 
     {
         id: "rm-demo",
         nome: "Equipamento Real Madrid",
         categoria: "Equipamentos",
         marca: "Real Madrid",
-        descricao: "Indica a época, o modelo e o tamanho pretendidos.",
-        precoKz: 25000,
+        pais: "Espanha",
+        descricao: "Modelos e tamanhos disponíveis.",
+        precoKz: 52000,
         precoEUR: 40,
         ativo: true,
-        epoca: "Confirmar época"
+        destaque: true,
+        epoca: "Por encomenda"
     },
 
     {
@@ -1481,38 +1734,89 @@ const demoProducts = [
         nome: "Equipamento Barcelona",
         categoria: "Equipamentos",
         marca: "Barcelona",
-        descricao: "Consulta os modelos e tamanhos disponíveis.",
-        precoKz: 25000,
+        pais: "Espanha",
+        descricao: "Modelos e tamanhos disponíveis.",
+        precoKz: 52000,
         precoEUR: 40,
-        destaque: true,
         ativo: true,
-        epoca: "Confirmar época"
+        destaque: false,
+        epoca: "Por encomenda"
     },
+
+/* PORTUGAL */
+
+    {
+        id: "benfica-demo",
+        nome: "Equipamento Benfica",
+        categoria: "Equipamentos",
+        marca: "Benfica",
+        pais: "Portugal",
+        descricao: "Modelos e tamanhos disponíveis.",
+        precoKz: 52000,
+        precoEUR: 40,
+        ativo: true,
+        destaque: false,
+        epoca: "Por encomenda"
+    },
+	
+	{
+        id: "sporting-demo",
+        nome: "Equipamento Sporting",
+        categoria: "Equipamentos",
+        marca: "Sporting",
+        pais: "Portugal",
+        descricao: "Modelos e tamanhos disponíveis.",
+        precoKz: 52000,
+        precoEUR: 40,
+        ativo: true,
+        destaque: false,
+        epoca: "Por encomenda"
+    },
+
+{
+        id: "porto-demo",
+        nome: "Equipamento FC Porto",
+        categoria: "Equipamentos",
+        marca: "FC Porto",
+        pais: "Portugal",
+        descricao: "Modelos e tamanhos disponíveis.",
+        precoKz: 52000,
+        precoEUR: 40,
+        ativo: true,
+        destaque: false,
+        epoca: "Por encomenda"
+    },
+
+    /* ALEMANHA */
 
     {
         id: "bayern-demo",
         nome: "Equipamento Bayern",
         categoria: "Equipamentos",
         marca: "Bayern",
-        descricao: "Modelo e época a confirmar antes da encomenda.",
-        precoKz: 25000,
+        pais: "Alemanha",
+        descricao: "Modelos e tamanhos disponíveis.",
+        precoKz: 52000,
         precoEUR: 40,
-        destaque: false,
         ativo: true,
-        epoca: "Confirmar época"
+        destaque: true,
+        epoca: "Por encomenda"
     },
+
+    /* INGLATERRA */
 
     {
         id: "city-demo",
         nome: "Equipamento Manchester City",
         categoria: "Equipamentos",
         marca: "Manchester City",
-        descricao: "Consulta os modelos e tamanhos disponíveis.",
-        precoKz: 25000,
+        pais: "Inglaterra",
+        descricao: "Modelos e tamanhos disponíveis.",
+        precoKz: 52000,
         precoEUR: 40,
-        destaque: true,
         ativo: true,
-        epoca: "Confirmar época"
+        destaque: true,
+        epoca: "Por encomenda"
     },
 
     {
@@ -1520,12 +1824,13 @@ const demoProducts = [
         nome: "Equipamento Manchester United",
         categoria: "Equipamentos",
         marca: "Manchester United",
-        descricao: "Indica o modelo e o tamanho pretendidos.",
-        precoKz: 25000,
+        pais: "Inglaterra",
+        descricao: "Modelos e tamanhos disponíveis.",
+        precoKz: 52000,
         precoEUR: 40,
-        destaque: false,
         ativo: true,
-        epoca: "Confirmar época"
+        destaque: false,
+        epoca: "Por encomenda"
     },
 
     {
@@ -1533,12 +1838,13 @@ const demoProducts = [
         nome: "Equipamento Liverpool",
         categoria: "Equipamentos",
         marca: "Liverpool",
-        descricao: "Consulta os modelos e tamanhos disponíveis.",
-        precoKz: 25000,
+        pais: "Inglaterra",
+        descricao: "Modelos e tamanhos disponíveis.",
+        precoKz: 52000,
         precoEUR: 40,
-        destaque: false,
         ativo: true,
-        epoca: "Confirmar época"
+        destaque: false,
+        epoca: "Por encomenda"
     },
 
     {
@@ -1546,31 +1852,212 @@ const demoProducts = [
         nome: "Equipamento Arsenal",
         categoria: "Equipamentos",
         marca: "Arsenal",
-        descricao: "Modelo e época a confirmar antes da encomenda.",
-        precoKz: 25000,
+        pais: "Inglaterra",
+        descricao: "Modelos e tamanhos disponíveis.",
+        precoKz: 52000,
         precoEUR: 40,
-        destaque: false,
         ativo: true,
-        epoca: "Confirmar época"
+        destaque: false,
+        epoca: "Por encomenda"
     },
+
+    /* FRANÇA */
 
     {
         id: "psg-demo",
         nome: "Equipamento PSG",
         categoria: "Equipamentos",
         marca: "PSG",
-        descricao: "Consulta os modelos e tamanhos disponíveis.",
-        precoKz: 25000,
+        pais: "França",
+        descricao: "Modelos e tamanhos disponíveis.",
+        precoKz: 52000,
         precoEUR: 40,
-        destaque: false,
         ativo: true,
-        epoca: "Confirmar época"
+        destaque: true,
+        epoca: "Por encomenda"
+    },
+
+    /* ITÁLIA */
+
+    {
+        id: "milan-demo",
+        nome: "Equipamento AC Milan",
+        categoria: "Equipamentos",
+        marca: "AC Milan",
+        pais: "Itália",
+        descricao: "Modelos e tamanhos disponíveis.",
+        precoKz: 52000,
+        precoEUR: 40,
+        ativo: true,
+        destaque: false,
+        epoca: "Por encomenda"
+    },
+
+    {
+        id: "juventus-demo",
+        nome: "Equipamento Juventus",
+        categoria: "Equipamentos",
+        marca: "Juventus",
+        pais: "Itália",
+        descricao: "Modelos e tamanhos disponíveis.",
+        precoKz: 52000,
+        precoEUR: 40,
+        ativo: true,
+        destaque: false,
+        epoca: "Por encomenda"
+    },
+
+    {
+        id: "inter-demo",
+        nome: "Equipamento Inter",
+        categoria: "Equipamentos",
+        marca: "Inter",
+        pais: "Itália",
+        descricao: "Modelos e tamanhos disponíveis.",
+        precoKz: 52000,
+        precoEUR: 40,
+        ativo: true,
+        destaque: false,
+        epoca: "Por encomenda"
+    },
+
+    
+
+
+    /* BRASIL */
+
+    {
+        id: "flamengo-demo",
+        nome: "Equipamento Flamengo",
+        categoria: "Equipamentos",
+        marca: "Flamengo",
+        pais: "Brasil",
+        descricao: "Modelos e tamanhos disponíveis.",
+        precoKz: 52000,
+        precoEUR: 40,
+        ativo: true,
+        destaque: false,
+        epoca: "Por encomenda"
+    },
+
+    {
+        id: "santos-demo",
+        nome: "Equipamento Santos FC",
+        categoria: "Equipamentos",
+        marca: "Santos FC",
+        pais: "Brasil",
+        descricao: "Modelos e tamanhos disponíveis.",
+        precoKz: 52000,
+        precoEUR: 40,
+        ativo: true,
+        destaque: false,
+        epoca: "Por encomenda"
+    },
+
+    {
+        id: "palmeiras-demo",
+        nome: "Equipamento Palmeiras",
+        categoria: "Equipamentos",
+        marca: "Palmeiras",
+        pais: "Brasil",
+        descricao: "Modelos e tamanhos disponíveis.",
+        precoKz: 52000,
+        precoEUR: 40,
+        ativo: true,
+        destaque: false,
+        epoca: "Por encomenda"
+    },
+
+    {
+        id: "corinthians-demo",
+        nome: "Equipamento Corinthians",
+        categoria: "Equipamentos",
+        marca: "Corinthians",
+        pais: "Brasil",
+        descricao: "Modelos e tamanhos disponíveis.",
+        precoKz: 52000,
+        precoEUR: 40,
+        ativo: true,
+        destaque: false,
+        epoca: "Por encomenda"
+    },
+
+    {
+        id: "saopaulo-demo",
+        nome: "Equipamento São Paulo",
+        categoria: "Equipamentos",
+        marca: "São Paulo",
+        pais: "Brasil",
+        descricao: "Modelos e tamanhos disponíveis.",
+        precoKz: 52000,
+        precoEUR: 40,
+        ativo: true,
+        destaque: false,
+        epoca: "Por encomenda"
+    },
+
+    {
+        id: "fluminense-demo",
+        nome: "Equipamento Fluminense",
+        categoria: "Equipamentos",
+        marca: "Fluminense",
+        pais: "Brasil",
+        descricao: "Modelos e tamanhos disponíveis.",
+        precoKz: 52000,
+        precoEUR: 40,
+        ativo: true,
+        destaque: false,
+        epoca: "Por encomenda"
+    },
+
+    
+
+    {
+        id: "internacional-demo",
+        nome: "Equipamento Internacional",
+        categoria: "Equipamentos",
+        marca: "Internacional",
+        pais: "Brasil",
+        descricao: "Modelos e tamanhos disponíveis.",
+        precoKz: 52000,
+        precoEUR: 40,
+        ativo: true,
+        destaque: false,
+        epoca: "Por encomenda"
+    },
+
+    {
+        id: "botafogo-demo",
+        nome: "Equipamento Botafogo",
+        categoria: "Equipamentos",
+        marca: "Botafogo",
+        pais: "Brasil",
+        descricao: "Modelos e tamanhos disponíveis.",
+        precoKz: 52000,
+        precoEUR: 40,
+        ativo: true,
+        destaque: false,
+        epoca: "Por encomenda"
+    },
+
+    {
+        id: "vasco-demo",
+        nome: "Equipamento Vasco da Gama",
+        categoria: "Equipamentos",
+        marca: "Vasco da Gama",
+        pais: "Brasil",
+        descricao: "Modelos e tamanhos disponíveis.",
+        precoKz: 52000,
+        precoEUR: 40,
+        ativo: true,
+        destaque: false,
+        epoca: "Por encomenda"
     },
 
     /* PERFUMES */
 
     {
-        id: "dior-demo",
+        id: "sauvage-demo",
         nome: "Dior Sauvage",
         categoria: "Perfumes",
         marca: "Dior",
@@ -1582,14 +2069,14 @@ const demoProducts = [
     },
 
     {
-        id: "chanel-demo",
-        nome: "Chanel Coco Mademoiselle",
+        id: "rabanne-demo",
+        nome: "Paco Rabanne",
         categoria: "Perfumes",
-        marca: "Chanel",
+        marca: "Paco Rabanne",
         descricao: "Confirma a versão e a capacidade pretendidas.",
         precoKz: 35000,
         precoEUR: 55,
-        destaque: true,
+        destaque: false,
         ativo: true
     },
 
@@ -1601,28 +2088,111 @@ const demoProducts = [
         descricao: "Consulta as versões e capacidades disponíveis.",
         precoKz: 32000,
         precoEUR: 50,
-        destaque: true,
+        destaque: false,
         ativo: true
     },
 
     {
-        id: "armani-demo",
-        nome: "Acqua di Giò",
+        id: "dolce-demo",
+        nome: "Dolce Gabbana",
         categoria: "Perfumes",
-        marca: "Giorgio Armani",
+        marca: "Dolce Gabbana",
         descricao: "Confirma a versão e a capacidade pretendidas.",
         precoKz: 30000,
         precoEUR: 48,
         destaque: false,
         ativo: true
-    }
+    },
 
+    {
+        id: "zara-demo",
+        nome: "Perfume Zara",
+        categoria: "Perfumes",
+        marca: "Zara",
+        descricao: "Indica a fragrância e a capacidade pretendidas.",
+        precoKz: 18000,
+        precoEUR: 29,
+        destaque: false,
+        ativo: true
+    }
 ];
+
+
+/* ESTADO DA LOJA */
 
 let products = applyHtmlProductImages([...demoProducts]);
 let cart = [];
-let currentCurrency = "Kz";
+let currentCurrency = "EUR";
 let currentClub = "todos";
+
+/* CLUBES ORGANIZADOS POR PAÍS */
+
+const clubsByCountry = {
+    "Espanha": [
+        "Real Madrid",
+        "Barcelona",
+        "Atlético Madrid",
+        "Sevilla",
+        "Valencia",
+        "Athletic Bilbao",
+        "Real Sociedad"
+    ],
+    "Inglaterra": [
+        "Manchester City",
+        "Manchester United",
+        "Liverpool",
+        "Arsenal",
+        "Chelsea",
+        "Tottenham",
+        "Newcastle United",
+        "Aston Villa"
+    ],
+    "Alemanha": [
+        "Bayern",
+        "Borussia Dortmund",
+        "Bayer Leverkusen",
+        "RB Leipzig"
+    ],
+    "França": [
+        "PSG",
+        "Marseille",
+        "Lyon",
+        "Monaco",
+        "Lille"
+    ],
+    "Itália": [
+        "AC Milan",
+        "Inter",
+        "Juventus",
+        "Napoli",
+        "Roma",
+        "Lazio"
+    ],
+    "Portugal": [
+        "Benfica",
+        "FC Porto",
+        "Sporting",
+        "Braga"
+    ],
+    "Brasil": [
+        "Flamengo",
+        "Santos FC",
+        "Palmeiras",
+        "Corinthians",
+        "São Paulo",
+        "Fluminense",
+        "Grêmio",
+        "Internacional",
+        "Botafogo",
+        "Vasco da Gama"
+    ]
+};
+
+/* PREÇOS DE REFERÊNCIA DOS EQUIPAMENTOS */
+
+let equipmentBaseEUR = 40;
+let equipmentBaseKz = 52000;
+let personalizadoPercent = 25;
 
 /* FORMATAÇÃO DE PREÇOS */
 
@@ -1648,24 +2218,20 @@ function getPrice(product) {
 /* IMAGENS */
 
 function safeImage(url) {
-    return url || "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=80";
+    return url ||
+        "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=80";
 }
 
 /* CARTÕES DE PRODUTOS */
 
 function createProductCard(product) {
 
-    const badge = product.categoria === "Equipamentos"
-        ? (product.epoca && product.epoca !== "Confirmar época"
-            ? product.epoca
-            : "Por encomenda")
-        : "Por encomenda";
+    const isEquipment = product.categoria === "Equipamentos";
 
     return `
-        <article class="product-card">
+        <article class="product-card" data-product-id="${product.id}">
 
             <div class="product-image-wrap">
-
                 <img
                     class="product-image"
                     src="${safeImage(product.imagem)}"
@@ -1673,8 +2239,7 @@ function createProductCard(product) {
                     loading="lazy"
                 >
 
-                <span class="product-badge">${badge}</span>
-
+                <span class="product-badge">Por encomenda</span>
             </div>
 
             <div class="product-info">
@@ -1697,17 +2262,124 @@ function createProductCard(product) {
                     Preço de referência · confirmar disponibilidade
                 </div>
 
-                <button
-                    class="add-cart"
-                    onclick="addToCart('${product.id}')"
-                >
-                    + Adicionar ao carrinho
-                </button>
+                ${isEquipment ? `
+                    <div class="equipment-options">
+                        <select class="equipment-age"
+                                aria-label="Categoria do tamanho"
+                                onchange="updateEquipmentSizes(this)">
+                            <option value="Adulto">Adulto</option>
+                            <option value="Criança">Criança</option>
+                        </select>
+
+                        <select class="equipment-size"
+                                aria-label="Tamanho do equipamento">
+                            <option value="XS">XS</option>
+                            <option value="S">S</option>
+                            <option value="M" selected>M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="XXL">XXL</option>
+                        </select>
+                    </div>
+
+                    <div class="card-quantity">
+                        <button type="button"
+                                onclick="changeCardQuantity(this, -1)"
+                                aria-label="Diminuir quantidade">−</button>
+
+                        <span>1</span>
+
+                        <button type="button"
+                                onclick="changeCardQuantity(this, 1)"
+                                aria-label="Aumentar quantidade">+</button>
+                    </div>
+
+                    <button class="add-cart"
+                            onclick="addEquipmentFromCard(this)">
+                        + Adicionar ao carrinho
+                    </button>
+                ` : `
+                    <button class="add-cart"
+                            onclick="addToCart('${product.id}')">
+                        + Adicionar ao carrinho
+                    </button>
+                `}
 
             </div>
-
         </article>
     `;
+}
+
+/* TAMANHOS DOS EQUIPAMENTOS */
+
+function updateEquipmentSizes(ageSelect) {
+
+    const card = ageSelect.closest(".product-card");
+    const sizeSelect = card.querySelector(".equipment-size");
+
+    const sizes = ageSelect.value === "Criança"
+        ? ["16", "18", "20", "22", "24", "26", "28"]
+        : ["XS", "S", "M", "L", "XL", "XXL"];
+
+    sizeSelect.innerHTML = sizes.map(size =>
+        `<option value="${size}">${size}</option>`
+    ).join("");
+}
+
+/* QUANTIDADE NO CARTÃO DO PRODUTO */
+
+function changeCardQuantity(button, amount) {
+
+    const quantityDisplay = button.parentElement.querySelector("span");
+
+    let quantity = Number(quantityDisplay.textContent) || 1;
+
+    quantity += amount;
+
+    if (quantity < 1) {
+        quantity = 1;
+    }
+
+    quantityDisplay.textContent = quantity;
+}
+
+/* ADICIONAR EQUIPAMENTO DO CARTÃO */
+
+function addEquipmentFromCard(button) {
+
+    const card = button.closest(".product-card");
+
+    const productId = card.dataset.productId;
+    const ageGroup = card.querySelector(".equipment-age").value;
+    const size = card.querySelector(".equipment-size").value;
+    const quantity = Number(
+        card.querySelector(".card-quantity span").textContent
+    ) || 1;
+
+    addToCart(productId, ageGroup, size, quantity);
+}
+
+/* EXPANDIR E RECOLHER LISTAS */
+
+function toggleProductList(type) {
+
+    const isEquipment = type === "equipment";
+
+    const grid = document.getElementById(
+        isEquipment ? "equipmentProducts" : "perfumeProducts"
+    );
+
+    const button = document.getElementById(
+        isEquipment ? "equipmentToggle" : "perfumeToggle"
+    );
+
+    grid.classList.toggle("expanded");
+
+    const expanded = grid.classList.contains("expanded");
+
+    button.textContent = expanded
+        ? (isEquipment ? "Ver menos equipamentos" : "Ver menos perfumes")
+        : (isEquipment ? "Ver todos os equipamentos" : "Ver todos os perfumes");
 }
 
 /* MOSTRAR PRODUTOS */
@@ -1715,10 +2387,6 @@ function createProductCard(product) {
 function renderProducts() {
 
     const activeProducts = products.filter(p => p.ativo !== false);
-
-    const featured = activeProducts
-        .filter(p => p.destaque === true)
-        .slice(0, 4);
 
     const equipment = activeProducts.filter(p =>
         p.categoria === "Equipamentos" &&
@@ -1731,19 +2399,6 @@ function renderProducts() {
     const perfumes = activeProducts.filter(p =>
         p.categoria === "Perfumes"
     );
-
-    const newest = [...activeProducts]
-        .sort((a, b) =>
-            (Number(b.criadoEm) || 0) - (Number(a.criadoEm) || 0)
-        )
-        .slice(0, 4);
-
-    document.getElementById("featuredProducts").innerHTML =
-        featured.length
-            ? featured.map(createProductCard).join("")
-            : `<div class="empty-products">
-                Ainda não existem produtos destacados.
-              </div>`;
 
     document.getElementById("equipmentProducts").innerHTML =
         equipment.length
@@ -1759,112 +2414,210 @@ function renderProducts() {
                 Ainda não existem perfumes disponíveis.
               </div>`;
 
-    document.getElementById("newProducts").innerHTML =
-        newest.length
-            ? newest.map(createProductCard).join("")
-            : `<div class="empty-products">
-                Ainda não existem novidades.
-              </div>`;
+    document.getElementById("equipmentToggle").hidden =
+        equipment.length <= 4;
+
+    document.getElementById("perfumeToggle").hidden =
+        perfumes.length <= 4;
 
     updateCart();
+}
+
+/* SELEÇÃO DE CLUBE */
+
+function updateClubOptions() {
+
+    const country = document.getElementById("clubCountry").value;
+    const clubChoice = document.getElementById("clubChoice");
+
+    clubChoice.innerHTML = clubsByCountry[country]
+        .map(club => `<option value="${club}">${club}</option>`)
+        .join("");
+}
+
+/* CALCULAR PREÇO DA PERSONALIZAÇÃO */
+
+function updateCustomPrice() {
+
+    const type = document.getElementById("equipmentType").value;
+    const multiplier = type === "personalizado" ? (1 + personalizadoPercent/100) : 1;
+
+    const priceKz = equipmentBaseKz * multiplier;
+    const priceEUR = equipmentBaseEUR * multiplier;
+
+    const label = type === "normal"
+        ? "Equipamento normal"
+        : type === "treino"
+            ? "Equipamento de treino"
+            : `Camisola personalizada (+${personalizadoPercent}%)`;
+
+    document.getElementById("customPrice").textContent =
+        label + " — " +
+        priceKz.toLocaleString("pt-PT") + " Kz / " +
+        priceEUR.toLocaleString("pt-PT") + " €";
+
+    const personalizadoOption = document.querySelector('#equipmentType option[value="personalizado"]');
+    if(personalizadoOption){
+        personalizadoOption.textContent = `Camisola personalizada (+${personalizadoPercent}%)`;
+    }
+}
+
+/* ADICIONAR CLUBE ESCOLHIDO AO CARRINHO */
+
+function addSelectedClub() {
+
+    const country = document.getElementById("clubCountry").value;
+    const club = document.getElementById("clubChoice").value;
+    const type = document.getElementById("equipmentType").value;
+
+    const typeNames = {
+        normal: "Equipamento normal",
+        treino: "Equipamento de treino",
+        personalizado: "Camisola personalizada"
+    };
+
+    const multiplier = type === "personalizado" ? (1 + personalizadoPercent/100) : 1;
+
+    const product = {
+        id: "custom-" + country + "-" + club + "-" + type,
+        nome: club + " — " + typeNames[type],
+        categoria: "Equipamentos",
+        marca: club,
+        pais: country,
+        tipoEquipamento: typeNames[type],
+        descricao: "Confirmar época, modelo, tamanho e disponibilidade.",
+        precoKz: equipmentBaseKz * multiplier,
+        precoEUR: equipmentBaseEUR * multiplier,
+        imagem: "",
+        ativo: true,
+        personalizado: type === "personalizado"
+    };
+
+    const existingProduct = products.find(p => p.id === product.id);
+
+    if (!existingProduct) {
+        products.push(product);
+    }
+
+    addToCart(product.id);
 }
 
 /* FILTRO POR CLUBE */
 
 function filterClub(club, button) {
-
     currentClub = club;
-
-    document.querySelectorAll(".filter-button").forEach(btn => {
-        btn.classList.remove("active");
-    });
-
-    button.classList.add("active");
-
     renderProducts();
 }
 
 /* MOEDA */
 
 document.getElementById("currency").addEventListener("change", function() {
-
     currentCurrency = this.value;
-
     renderProducts();
-
+    updateCustomPrice();
 });
 
 /* CARRINHO */
 
-function addToCart(productId) {
-
+function addToCart(productId, ageGroup = "", size = "", quantity = 1) {
     const product = products.find(p =>
         String(p.id) === String(productId)
     );
 
     if (!product) return;
 
+    const isCustom = String(productId).startsWith("custom-");
+    const equipmentType = isCustom
+        ? (product.personalizado ? "personalizado" :
+           product.tipoEquipamento === "Equipamento de treino"
+               ? "treino" : "normal")
+        : "normal";
+
+    const percent = equipmentType === "personalizado"
+        ? personalizadoPercent : 0;
+
+    const multiplier = 1 + percent / 100;
+
+    const priceKz = (Number(product.precoKz) || 0) * multiplier;
+    const priceEUR = (Number(product.precoEUR) || 0) * multiplier;
+
     const existing = cart.find(item =>
-        String(item.id) === String(productId)
+        String(item.id) === String(productId) &&
+        (item.ageGroup || "") === ageGroup &&
+        (item.size || "") === size &&
+        (item.equipmentType || "normal") === equipmentType
     );
 
     if (existing) {
-        existing.quantity++;
+        existing.quantity += quantity;
     } else {
         cart.push({
             id: product.id,
-            quantity: 1
+            quantity,
+            ageGroup,
+            size,
+            equipmentType,
+            personalizadoPercent: percent,
+            priceKz,
+            priceEUR
         });
     }
 
     updateCart();
     openCart();
 }
-
-function changeQuantity(productId, amount) {
-
-    const item = cart.find(item =>
-        String(item.id) === String(productId)
+function changeQuantity(productId, delta, ageGroup = "", size = "", equipmentType = "normal") {
+    const item = cart.find(i => 
+        String(i.id) === String(productId) && 
+        (i.ageGroup || "") === ageGroup && 
+        (i.size || "") === size &&
+        (i.equipmentType || "normal") === equipmentType
     );
-
     if (!item) return;
-
-    item.quantity += amount;
-
+    
+    item.quantity += delta;
+    
     if (item.quantity <= 0) {
-        cart = cart.filter(item =>
-            String(item.id) !== String(productId)
-        );
+        removeFromCart(productId, ageGroup, size, equipmentType);
+    } else {
+        updateCart();
+        saveCart();
     }
-
-    updateCart();
 }
 
-function removeFromCart(productId) {
-
-    cart = cart.filter(item =>
-        String(item.id) !== String(productId)
+function removeFromCart(productId, ageGroup = "", size = "", equipmentType = "normal") {
+    cart = cart.filter(i => 
+        !(String(i.id) === String(productId) && 
+        (i.ageGroup || "") === ageGroup && 
+        (i.size || "") === size &&
+        (i.equipmentType || "normal") === equipmentType)
     );
-
     updateCart();
+    saveCart();
 }
 
 function getCartDetails() {
-
     return cart.map(item => {
-
         const product = products.find(p =>
             String(p.id) === String(item.id)
         );
 
         if (!product) return null;
 
+        const unitPrice = currentCurrency === "EUR"
+            ? Number(item.priceEUR ?? product.precoEUR) || 0
+            : Number(item.priceKz ?? product.precoKz) || 0;
+
         return {
             ...product,
+            ageGroup: item.ageGroup || "",
+            size: item.size || "",
             quantity: item.quantity,
-            lineTotal: getPrice(product) * item.quantity
+            equipmentType: item.equipmentType || "normal",
+            personalizadoPercent: item.personalizadoPercent || 0,
+            unitPrice,
+            lineTotal: unitPrice * item.quantity
         };
-
     }).filter(Boolean);
 }
 
@@ -1880,27 +2633,20 @@ function updateCart() {
         (sum, item) => sum + item.lineTotal, 0
     );
 
-    const deposit = total * 0.60;
-    const remaining = total * 0.40;
+    const deposit = total;
 
     document.getElementById("cartCount").textContent = count;
-
-    document.getElementById("cartSubtotal").textContent =
-        formatMoney(total);
-
-    document.getElementById("cartTotal").textContent =
-        formatMoney(total);
-
-    document.getElementById("cartDeposit").textContent =
-        formatMoney(deposit);
-
-    document.getElementById("cartRemaining").textContent =
-        formatMoney(remaining);
+    document.getElementById("cartTotal").textContent = formatMoney(total);
+    document.getElementById("cartDeposit").textContent = formatMoney(deposit);
+    
+    const remainingEl = document.getElementById("cartRemaining");
+    if(remainingEl) {
+        remainingEl.textContent = formatMoney(0);
+    }
 
     const cartItems = document.getElementById("cartItems");
 
     if (!items.length) {
-
         cartItems.innerHTML = `
             <div class="cart-empty">
                 <div style="font-size:38px;margin-bottom:12px">🛒</div>
@@ -1908,51 +2654,55 @@ function updateCart() {
                 Descobre os produtos e adiciona os teus favoritos.
             </div>
         `;
-
         return;
     }
 
-    cartItems.innerHTML = items.map(item => `
+    cartItems.innerHTML = items.map(item => {
 
+        let equipamentoLabel = "";
+        if(item.equipmentType === "personalizado"){
+            equipamentoLabel = `Personalizada (+${item.personalizadoPercent || personalizadoPercent}%)`;
+        } else if(item.equipmentType === "treino"){
+            equipamentoLabel = `Equipamento de treino`;
+        } else {
+            equipamentoLabel = `Equipamento normal`;
+        }
+
+        return `
         <div class="cart-item">
-
             <img src="${safeImage(item.imagem)}" alt="${item.nome}">
-
             <div>
-
                 <h4>${item.nome}</h4>
-
-                <div class="cart-item-price">
-                    ${formatMoney(item.lineTotal)}
+                <div style="font-size:11px;margin-bottom:5px; font-weight:600; color:#d32f2f;">
+                    ${equipamentoLabel}
                 </div>
-
+                ${item.ageGroup ? `
+                    <div style="font-size:11px;margin-bottom:5px">
+                        Categoria: ${item.ageGroup}
+                    </div>
+                ` : ""}
+                ${item.size ? `
+                    <div style="font-size:11px;margin-bottom:7px">
+                        Tamanho: ${item.size}
+                    </div>
+                ` : ""}
+                <div class="cart-item-price">
+                    ${formatMoney(item.lineTotal)} ${item.equipmentType === 'personalizado' ? `<small style="font-size:10px">(${formatMoney(item.unitPrice)} un.)</small>` : ''}
+                </div>
                 <div class="quantity-controls">
-
-                    <button onclick="changeQuantity('${item.id}', -1)">
-                        −
-                    </button>
-
+                    <button onclick="changeQuantity('${item.id}', -1, '${item.ageGroup}', '${item.size}', '${item.equipmentType || 'normal'}')">−</button>
                     <span>${item.quantity}</span>
-
-                    <button onclick="changeQuantity('${item.id}', 1)">
-                        +
-                    </button>
-
-                    <button
-                        class="remove-item"
-                        onclick="removeFromCart('${item.id}')"
-                        aria-label="Remover produto"
-                    >
+                    <button onclick="changeQuantity('${item.id}', 1, '${item.ageGroup}', '${item.size}', '${item.equipmentType || 'normal'}')">+</button>
+                    <button class="remove-item"
+                        onclick="removeFromCart('${item.id}', '${item.ageGroup}', '${item.size}', '${item.equipmentType || 'normal'}')"
+                        aria-label="Remover produto">
                         Remover
                     </button>
-
                 </div>
-
             </div>
-
         </div>
-
-    `).join("");
+        `;
+    }).join("");
 }
 
 /* ABRIR E FECHAR CARRINHO */
@@ -1969,7 +2719,7 @@ function closeCart() {
     document.body.style.overflow = "";
 }
 
-/* ENCOMENDAR */
+/* ENCOMENDAR PELO WHATSAPP */
 
 function checkout() {
 
@@ -1980,39 +2730,75 @@ function checkout() {
         return;
     }
 
+    const form = document.getElementById("customerForm");
+
+    if (!form.reportValidity()) {
+        return;
+    }
+
+    const customerName = document.getElementById("customerName").value.trim();
+    const customerAddress = document.getElementById("customerAddress").value.trim();
+    const customerStreet = document.getElementById("customerStreet").value.trim();
+    const customerPostal = document.getElementById("customerPostal").value.trim();
+    const customerPhone = document.getElementById("customerPhone").value.trim();
+
     const total = items.reduce(
         (sum, item) => sum + item.lineTotal, 0
     );
+      const deposit = total;
 
-    const deposit = total * 0.60;
-    const remaining = total * 0.40;
+    let message = "Olá Orkap! Gostaria de fazer uma encomenda.\n\n";
 
-    let message = "Olá Orkap! Gostaria de fazer uma encomenda:%0A%0A";
+    message += "*DADOS DO CLIENTE*\n";
+    message += "Nome: " + customerName + "\n";
+    message += "Morada: " + customerAddress + "\n";
+    message += "Rua/bairro: " + customerStreet + "\n";
+    message += "Caixa postal: " + (customerPostal || "Não indicada") + "\n";
+    message += "Telefone/WhatsApp: " + customerPhone + "\n\n";
+
+    message += "*PRODUTOS*\n";
 
     items.forEach(item => {
 
-        message +=
-            "• " + item.nome +
-            " | Quantidade: " + item.quantity +
-            " | " + formatMoney(item.lineTotal) +
-            "%0A";
+        message += "• " + item.nome +
+            "\n  Quantidade: " + item.quantity +
+            "\n  Preço: " + formatMoney(item.lineTotal) + "\n";
 
+        if (item.ageGroup) {
+            message += "  Categoria: " + item.ageGroup + "\n";
+        }
+
+        if (item.size) {
+            message += "  Tamanho: " + item.size + "\n";
+        }
+
+        if (item.pais) {
+            message += "  País: " + item.pais + "\n";
+        }
+
+        if (item.tipoEquipamento) {
+            message += "  Tipo: " + item.tipoEquipamento + "\n";
+        }
     });
 
-    message +=
-        "%0A*Moeda:* " + currentCurrency +
-        "%0A*Total:* " + formatMoney(total) +
-        "%0A*Pagamento inicial (60%):* " + formatMoney(deposit) +
-        "%0A*Restante (40%):* " + formatMoney(remaining) +
-        "%0A%0AGostaria de confirmar a disponibilidade, os modelos e as condições de pagamento.";
+    message += "\n*RESUMO DO PAGAMENTO*\n";
+    message += "Moeda: " + currentCurrency + "\n";
+    message += "Total: " + formatMoney(total) + "\n";
+    message += "Pagamento integral (100%): " + formatMoney(deposit) + "\n\n";
 
-    const url = "https://wa.me/" + WHATSAPP + "?text=" + message;
+    message += "*Entrega:* prazo previsto de até 7 dias, sujeito a confirmação.\n";
+    message += "Por favor, confirmem a disponibilidade, os modelos, o prazo e as condições de pagamento antes de eu efetuar o pagamento.";
+
+    const url = "https://wa.me/" + WHATSAPP +
+        "?text=" + encodeURIComponent(message);
 
     window.open(url, "_blank");
 }
 
 function contactWhatsApp() {
-
+       
+	
+	
     const message = encodeURIComponent(
         "Olá Orkap! Gostaria de consultar os produtos disponíveis."
     );
@@ -2025,56 +2811,51 @@ function contactWhatsApp() {
 
 /* FIREBASE: CATÁLOGO DINÂMICO */
 
+// FIREBASE SÓ PREÇO + % 
 if (database) {
-
+    // 1. Preços dos produtos (só precoKz e precoEUR)
     database.ref("produtos").on("value", snapshot => {
-
-        if (!snapshot.exists()) {
-            products = applyHtmlProductImages([...demoProducts]);
-            renderProducts();
-            return;
+        const dados = {};
+        if (snapshot.exists()) {
+            snapshot.forEach(c => { dados[c.key] = c.val(); });
         }
-
-        const firebaseProducts = [];
-
-        snapshot.forEach(child => {
-
-            const data = child.val();
-
-            firebaseProducts.push({
-                ...data,
-                id: child.key,
-                nome: data.nome || "Produto sem nome",
-                categoria: data.categoria || "Outros",
-                marca: data.marca || "",
-                descricao: data.descricao || "",
-                precoKz: Number(data.precoKz) || 0,
-                precoEUR: Number(data.precoEUR) || 0,
-                imagem: data.imagem || "",
-                ativo: data.ativo !== false
-            });
-
-        });
-
-        products = applyHtmlProductImages(firebaseProducts);
-
+        products = applyHtmlProductImages(demoProducts.map(demo => {
+            const fb = dados[demo.id];
+            if (fb) {
+                return {
+                    ...demo,
+                    precoKz: fb.precoKz != null ? Number(fb.precoKz) : demo.precoKz,
+                    precoEUR: fb.precoEUR != null ? Number(fb.precoEUR) : demo.precoEUR
+                };
+            }
+            return demo;
+        }));
         renderProducts();
+        updateCustomPrice();
+    });
 
-    }, error => {
-
-        console.error("Erro ao carregar produtos:", error);
-
-        products = applyHtmlProductImages([...demoProducts]);
-
-        renderProducts();
-
+    // 2. AQUI É ONDE ENTRA O CÓDIGO DA PERCENTAGEM
+    database.ref("config").on("value", snap=>{
+      if(snap.exists()){
+        const c = snap.val();
+        equipmentBaseKz = Number(c.baseKz) || 52000;
+        equipmentBaseEUR = Number(c.baseEur || c.baseEUR) || 40;
+        personalizadoPercent = Number(c.personalizadoPercent) || 25;
+        updateCustomPrice();
+      }
     });
 
 } else {
-
     renderProducts();
-
 }
+
+
+
+/* INICIAR SELEÇÃO DE CLUBES */
+
+updateClubOptions();
+updateCustomPrice();
+renderProducts(); // <- ADICIONA ESTA LINHA
 
 </script>
 
