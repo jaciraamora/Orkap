@@ -2502,7 +2502,7 @@ function addSelectedClub() {
         descricao: "Confirmar época, modelo, tamanho e disponibilidade.",
         precoKz: equipmentBaseKz * multiplier,
         precoEUR: equipmentBaseEUR * multiplier,
-        imagem: "",
+        imagem: products.find(p => p.marca === club)?.imagem || "",
         ativo: true,
         personalizado: type === "personalizado"
     };
