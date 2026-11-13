@@ -21,7 +21,7 @@
 
 <style>
 :root {
-    --azul: #527fae;
+    --azul: #1E36B8;
     --azul-claro: #eaf2fa;
     --azul-suave: #f4f8fc;
     --branco: #ffffff;
@@ -44,7 +44,7 @@ html {
 
 body {
     font-family: DM Serif Display, sans-serif;
-    background: var(--branco);
+    background: var(--azul-suave);
     color: var(--texto);
 }
 
@@ -176,7 +176,12 @@ nav a:hover {
 /* APRESENTAÇÃO */
 
 .hero {
-    background: var(--azul-suave);
+    background: linear-gradient(
+    135deg,
+    rgba(12, 30, 130, .97),
+    rgba(30, 55, 190, .90),
+    rgba(120, 155, 255, .85)
+);
     padding: 55px 5%;
 }
 
@@ -198,6 +203,7 @@ nav a:hover {
     font-size: 12px;
     font-weight: bold;
     margin-bottom: 20px;
+	
 }
 
 .hero h1 {
@@ -205,14 +211,17 @@ nav a:hover {
     line-height: 1.12;
     margin-bottom: 20px;
     letter-spacing: -1.5px;
+	color: #ffffff;
+	font-family: Yeseva One !important;
 }
 
 .hero h1 span {
-    color: var(--azul);
+    color: #ffffff;
+	font-family: Yeseva One !important;
 }
 
 .hero p {
-    color: var(--cinza);
+    color: #ffffff;
     line-height: 1.8;
     max-width: 470px;
     font-size: 15px;
@@ -236,13 +245,13 @@ nav a:hover {
 }
 
 .primary-button {
-    background: var(--azul);
+    background: #000000;
     color: white;
 }
 
 .secondary-button {
-    color: var(--azul);
-    background: white;
+    color: #ffffff;
+    background:#000000;
 }
 
 .hero-image {
@@ -976,6 +985,8 @@ footer {
     color: var(--cinza);
     font-size: 11px;
     line-height: 1.8;
+	background: #ffffff;
+	
 }
 
 /* TELEMÓVEL */
@@ -1221,10 +1232,177 @@ footer {
         height: 120px;
     }
 }
+
+/* BOTÃO DISCRETO DO MENU */
+
+.orkap-menu-button {
+    width: 35px;
+    height: 35px;
+    border: none;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    border-radius: 7px;
+    transition: .2s;
+}
+
+.orkap-menu-button:hover {
+    background: #f3f5f8;
+}
+
+.orkap-menu-button span {
+    width: 16px;
+    height: 1.5px;
+    background: #64748b;
+    border-radius: 3px;
+}
+
+/* FUNDO DO MENU */
+
+.orkap-menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, .25);
+    z-index: 998;
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s;
+}
+
+/* MENU LATERAL */
+
+.orkap-side-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 270px;
+    max-width: 85%;
+    height: 100%;
+    background: white;
+    z-index: 999;
+    transform: translateX(-100%);
+    transition: transform .3s ease;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 5px 0 25px rgba(0,0,0,.08);
+}
+
+.orkap-side-menu.active {
+    transform: translateX(0);
+}
+
+.orkap-menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.orkap-menu-header {
+    height: 65px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--borda);
+    font-weight: 600;
+    color: var(--azul);
+}
+
+.orkap-menu-header button {
+    border: none;
+    background: none;
+    font-size: 26px;
+    color: #777;
+    cursor: pointer;
+}
+
+.orkap-menu-content {
+    padding: 20px 12px;
+    flex: 1;
+}
+
+.orkap-admin-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 14px;
+    border-radius: 7px;
+    color: #475569;
+    font-size: 14px;
+    transition: .2s;
+}
+
+.orkap-admin-link:hover {
+    background: #f1f5f9;
+    color: var(--azul);
+}
+
+.orkap-admin-link span {
+    font-size: 18px;
+}
+
+.orkap-menu-footer {
+    padding: 17px 20px;
+    border-top: 1px solid var(--borda);
+    font-size: 11px;
+    color: #999;
+}
+
+#orkap-loader {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(246, 248, 251, 0.85);
+    z-index: 999999;
+}
+
+#orkap-loader .spinner {
+    width: 45px;
+    height: 45px;
+    border: 4px solid #d9e3f0;
+    border-top-color: #2f6eae;
+    border-radius: 50%;
+    animation: orkap-spin 0.8s linear infinite;
+}
+
+@keyframes orkap-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+#orkap-network-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    padding: 15px 22px;
+    background: rgba(26, 43, 64, 0.95);
+    color: #ffffff;
+    font-family: Inter, Arial, sans-serif;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 10px;
+    z-index: 1000000;
+    max-width: 90%;
+}
+
+
 </style>
 </head>
 
 <body>
+
+<div id="orkap-loader">
+    <div class="spinner"></div>
+</div>
+
+<div id="orkap-network-message"></div>
 
 <div class="top-bar">
     COMPRAS ONLINE · PRODUTOS POR ENCOMENDA 
@@ -1233,11 +1411,11 @@ footer {
 <header>
     <div class="header-content">
 
-        <a href="#inicio" class="brand">
+        <a href="#inicio" class="brand" id="orkapSecretAccess">
             <img src="perfil.png" alt="Orkap" class="profile-photo">
 
             <div>
-                <div class="brand-name">NOVO CONCEITO DE SHOPPING </div>
+                <div class="brand-name">Orkap </div>
                 <small>A TUA LOJA ONLINE</small>
             </div>
         </a>
@@ -1246,23 +1424,79 @@ footer {
             <a href="#inicio">Início</a>
             <a href="#equipamentos">Equipamentos</a>
             <a href="#perfumes">Perfumes</a>
-            <a href="#como-encomendar">Encomendas</a>
+            <a href="#como-encomendar">Como Encomendar</a>
             <a href="#contacto">Contacto</a>
         </nav>
 
         <div class="header-actions">
+
             <select id="currency" class="currency-select" aria-label="Selecionar moeda">
-				 <option value="EUR">€ EUR</option>
-				 <option value="Kz">Kz</option>
-          
+                <option value="EUR">€ EUR</option>
+                <option value="Kz">Kz</option>
             </select>
 
             <button class="cart-button" onclick="openCart()">
                 🛒 <span class="cart-count" id="cartCount">0</span>
             </button>
+
         </div>
     </div>
 </header>
+
+<script>
+(function(){
+
+    const brand = document.getElementById('orkapSecretAccess');
+
+    let pressTimer;
+    let longPress = false;
+    let clicks = 0;
+    let clickTimer;
+
+    brand.addEventListener('pointerdown', function(){
+        longPress = false;
+
+        pressTimer = setTimeout(function(){
+            longPress = true;
+            window.location.href = '/admin.html';
+        }, 3000);
+    });
+
+    function cancelPress(){
+        clearTimeout(pressTimer);
+    }
+
+    brand.addEventListener('pointerup', cancelPress);
+    brand.addEventListener('pointerleave', cancelPress);
+    brand.addEventListener('pointercancel', cancelPress);
+
+    brand.addEventListener('click', function(e){
+
+        if(longPress){
+            e.preventDefault();
+            longPress = false;
+            return;
+        }
+
+        clicks++;
+
+        clearTimeout(clickTimer);
+
+        if(clicks >= 5){
+            e.preventDefault();
+            window.location.href = '/admin.html';
+            clicks = 0;
+            return;
+        }
+
+        clickTimer = setTimeout(function(){
+            clicks = 0;
+        }, 2000);
+
+    });
+
+})();
+</script>
 
 <main>
 
@@ -1270,17 +1504,16 @@ footer {
     <div class="hero-content">
 
         <div>
-            <span class="hero-label">A tua próxima escolha está aqui</span>
-
+          
             <h1>
-                Os teus favoritos.<br>
-                <span>À tua maneira.</span>
+                NOVO CONCEITO <br>
+                <span>DE SHOPPING</span>
             </h1>
 
             <p>
                 Descobre equipamentos dos teus clubes favoritos
                 e perfumes de várias marcas. Escolhe os teus produtos
-                e encomenda sem sair de casa.
+                e encomende sem sair de casa.
             </p>
 
             <div class="hero-buttons">
@@ -1294,33 +1527,7 @@ footer {
     </div>
 </section>
 
-<section class="benefits">
 
-    <div class="benefit">
-        <span class="benefit-icon">⚽</span>
-        <div>
-            <strong>Os teus clubes favoritos</strong>
-            <small>Equipamentos de vários clubes</small>
-        </div>
-    </div>
-
-    <div class="benefit">
-        <span class="benefit-icon">🌸</span>
-        <div>
-            <strong>Perfumes de várias marcas</strong>
-            <small>Escolhe a fragrância ideal</small>
-        </div>
-    </div>
-
-    <div class="benefit">
-        <span class="benefit-icon">📦</span>
-        <div>
-            <strong>Encomenda online</strong>
-            <small>Compra com um processo simples</small>
-        </div>
-    </div>
-
-</section>
 
 <!-- EQUIPAMENTOS E ESCOLHA DE CLUBES -->
 
@@ -1331,28 +1538,24 @@ footer {
             <div>
                 <div class="section-tag">Paixão pelo futebol</div>
                 <h2>Encontra o teu clube</h2>
-                <p>Escolhe o país, o clube e o tipo de equipamento que pretendes encomendar.</p>
+                <p>Escolhe o país, o clube e o tipo de equipamento que pretende encomendar.</p>
             </div>
         </div>
 
         <div class="club-finder">
 
-            <p>
-                Seleciona o país, escolhe o teu clube e indica o tipo de equipamento
-                que pretendes encomendar.
-            </p>
 
             <div class="finder-fields">
 
                 <select id="clubCountry" class="form-control"
                         onchange="updateClubOptions()">
-                    <option value="Espanha">Espanha</option>
-                    <option value="Inglaterra">Inglaterra</option>
                     <option value="Alemanha">Alemanha</option>
-                    <option value="França">França</option>
-                    <option value="Itália">Itália</option>
-                    <option value="Portugal">Portugal</option>
-                    <option value="Brasil">Brasil</option>
+<option value="Brasil">Brasil</option>
+<option value="Espanha">Espanha</option>
+<option value="França">França</option>
+<option value="Inglaterra">Inglaterra</option>
+<option value="Itália">Itália</option>
+<option value="Portugal">Portugal</option>
                 </select>
 
                 <select id="clubChoice" class="form-control">
@@ -1368,17 +1571,14 @@ footer {
             </div>
 
             <p class="finder-note" id="customPrice">
-                Preço de referência: 52.000 Kz / 40 €
+                Preço de referência: 40 € / 52.000 Kz
             </p>
 
             <button class="finder-button" onclick="addSelectedClub()">
                 + Adicionar referência ao carrinho
             </button>
 
-            <p class="finder-note">
-                Os preços apresentados são referências. Modelo, época, tamanho
-                e disponibilidade serão confirmados pelo WhatsApp.
-            </p>
+         
 
         </div>
 
@@ -1425,12 +1625,12 @@ footer {
 
             <div>
                 <div class="section-tag">Simples e transparente</div>
-                <h2>Como funciona a tua encomenda?</h2>
+                <h2>Como encomendar?</h2>
 
                 <p>
                     Escolhe os produtos, adiciona-os ao carrinho e envia
-                    o teu pedido pelo WhatsApp. As encomendas são realizadas
-                    por encomenda.
+                    o teu pedido pelo WhatsApp.
+                    
                 </p>
 
                 <br>
@@ -1566,9 +1766,9 @@ footer {
 
       
 
-        <button class="checkout-button" onclick="checkout()">
-            Encomendar pelo WhatsApp
-        </button>
+       <button class="checkout-button" onclick="checkout()">
+    Finalizar encomenda
+</button>
 
         <p class="cart-note">
             Os preços são valores de referência. A encomenda e as condições
@@ -2733,14 +2933,19 @@ function closeCart() {
     document.body.style.overflow = "";
 }
 
-/* ENCOMENDAR PELO WHATSAPP */
+/* REGISTAR ENCOMENDA NO FIREBASE */
 
-function checkout() {
+async function checkout() {
 
     const items = getCartDetails();
 
     if (!items.length) {
         alert("Adiciona primeiro os produtos ao carrinho.");
+        return;
+    }
+
+    if (!database) {
+        alert("Não foi possível estabelecer ligação à loja. Tenta novamente.");
         return;
     }
 
@@ -2759,54 +2964,126 @@ function checkout() {
     const total = items.reduce(
         (sum, item) => sum + item.lineTotal, 0
     );
-      const deposit = total;
 
-    let message = "Olá Orkap! Gostaria de fazer uma encomenda.\n\n";
+    const checkoutButton = document.querySelector(".checkout-button");
+    const originalText = checkoutButton.innerText;
 
-    message += "*DADOS DO CLIENTE*\n";
-    message += "Nome: " + customerName + "\n";
-    message += "Morada: " + customerAddress + "\n";
-    message += "Rua/bairro: " + customerStreet + "\n";
-    message += "Caixa postal: " + (customerPostal || "Não indicada") + "\n";
-    message += "Telefone/WhatsApp: " + customerPhone + "\n\n";
+    checkoutButton.disabled = true;
+    checkoutButton.innerText = "A registar encomenda...";
 
-    message += "*PRODUTOS*\n";
+    const produtos = items.map(item => ({
+        id: item.id,
+        nome: item.nome,
+        marca: item.marca || "",
+        categoria: item.categoria || "",
+        pais: item.pais || "",
+        tipoEquipamento: item.tipoEquipamento || "",
+        equipmentType: item.equipmentType || "normal",
+        ageGroup: item.ageGroup || "",
+        size: item.size || "",
+        quantity: item.quantity,
+        unitPrice: item.unitPrice,
+        lineTotal: item.lineTotal,
+        personalizadoPercent: item.personalizadoPercent || 0
+    }));
 
-    items.forEach(item => {
+    let numeroEncomenda;
 
-        message += "• " + item.nome +
-            "\n  Quantidade: " + item.quantity +
-            "\n  Preço: " + formatMoney(item.lineTotal) + "\n";
+    try {
 
-        if (item.ageGroup) {
-            message += "  Categoria: " + item.ageGroup + "\n";
+        // GERAR NÚMERO SEQUENCIAL
+
+        const contadorRef = database.ref("contadorEncomendas");
+
+        const resultado = await contadorRef.transaction(
+            numeroAtual => (numeroAtual || 0) + 1
+        );
+
+        if (!resultado.committed) {
+            throw new Error("Não foi possível gerar o número da encomenda.");
         }
 
-        if (item.size) {
-            message += "  Tamanho: " + item.size + "\n";
-        }
+        const numeroSequencial = resultado.snapshot.val();
 
-        if (item.pais) {
-            message += "  País: " + item.pais + "\n";
-        }
+        numeroEncomenda = "ORK-" + numeroSequencial;
 
-        if (item.tipoEquipamento) {
-            message += "  Tipo: " + item.tipoEquipamento + "\n";
-        }
-    });
+        // REGISTAR ENCOMENDA
 
-    message += "\n*RESUMO DO PAGAMENTO*\n";
-    message += "Moeda: " + currentCurrency + "\n";
-    message += "Total: " + formatMoney(total) + "\n";
-    message += "Pagamento integral (100%): " + formatMoney(deposit) + "\n\n";
+        const encomendaRef = database.ref("encomendas").push();
 
-    message += "*Entrega:* prazo previsto de até 7 dias, sujeito a confirmação.\n";
-    message += "Por favor, confirmem a disponibilidade, os modelos, o prazo e as condições de pagamento antes de eu efetuar o pagamento.";
+        const encomenda = {
 
-    const url = "https://wa.me/" + WHATSAPP +
-        "?text=" + encodeURIComponent(message);
+            numero: numeroEncomenda,
 
-    window.open(url, "_blank");
+            cliente: {
+                nome: customerName,
+                morada: customerAddress,
+                rua: customerStreet,
+                caixaPostal: customerPostal || "Não indicada",
+                telefone: customerPhone
+            },
+
+            produtos: produtos,
+
+            moeda: currentCurrency,
+            total: total,
+
+            pagamento: {
+                tipo: "Integral",
+                percentagem: 100,
+                valor: total
+            },
+
+            estado: "Pendente",
+
+            data: firebase.database.ServerValue.TIMESTAMP
+        };
+
+        await encomendaRef.set(encomenda);
+
+    } catch (error) {
+
+        console.error("Erro ao registar encomenda:", error);
+
+        alert(
+            "Não foi possível registar a encomenda. Tenta novamente."
+        );
+
+        checkoutButton.disabled = false;
+        checkoutButton.innerText = originalText;
+
+        return;
+    }
+
+    // CONFIRMAR REGISTO
+
+    alert(
+        "A tua encomenda foi registada com sucesso!\n\n" +
+        "Número da encomenda: " + numeroEncomenda +
+        "\n\nA Orkap entrará em contacto contigo."
+    );
+
+    // LIMPAR CARRINHO
+
+    try {
+
+        cart = [];
+        saveCart();
+        updateCart();
+
+        form.reset();
+
+        closeCart();
+
+    } catch (error) {
+
+        console.error("Erro ao limpar o carrinho:", error);
+
+    }
+
+    checkoutButton.disabled = false;
+    checkoutButton.innerText = originalText;
+
 }
 
 function contactWhatsApp() {
@@ -2871,7 +3148,103 @@ updateClubOptions();
 updateCustomPrice();
 renderProducts(); // <- ADICIONA ESTA LINHA
 
-</script>
+/* MENU LATERAL ORKAP */
+
+function toggleOrkapMenu() {
+
+    const menu = document.getElementById("orkapSideMenu");
+    const overlay = document.getElementById("orkapOverlay");
+    const button = document.querySelector(".orkap-menu-button");
+
+    const abrir = !menu.classList.contains("active");
+
+    menu.classList.toggle("active", abrir);
+    overlay.classList.toggle("active", abrir);
+
+    button.setAttribute("aria-expanded", abrir);
+
+}
+
+function closeOrkapMenu() {
+
+    document.getElementById("orkapSideMenu").classList.remove("active");
+
+    document.getElementById("orkapOverlay").classList.remove("active");
+
+    document.querySelector(".orkap-menu-button")
+        .setAttribute("aria-expanded", "false");
+
+}
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "Escape") {
+        closeOrkapMenu();
+    }
+
+});
+
+
+function(){
+
+    const loader = document.getElementById('orkap-loader');
+    const message = document.getElementById('orkap-network-message');
+
+    let offlineTimer;
+    let messageTimer;
+
+    function showOffline(){
+
+        clearTimeout(offlineTimer);
+        clearTimeout(messageTimer);
+
+        loader.style.display = 'flex';
+
+        offlineTimer = setTimeout(function(){
+
+            loader.style.display = 'none';
+            message.innerText = 'Sem ligação à Internet. Verifica a tua conexão.';
+            message.style.display = 'block';
+
+        }, 5000);
+    }
+
+    function showOnline(){
+
+        clearTimeout(offlineTimer);
+
+        loader.style.display = 'none';
+        message.style.display = 'block';
+        message.innerText = 'Ligação restabelecida.';
+
+        clearTimeout(messageTimer);
+
+        messageTimer = setTimeout(function(){
+            message.style.display = 'none';
+        }, 3000);
+    }
+
+    function checkConnection(){
+
+        if(!navigator.onLine){
+            showOffline();
+        }else{
+            clearTimeout(offlineTimer);
+            loader.style.display = 'none';
+            message.style.display = 'none';
+        }
+
+    }
+
+    window.addEventListener('offline', showOffline);
+    window.addEventListener('online', showOnline);
+
+    checkConnection();
+
+})();
+
+
+</script> 
 
 </body>
 </html> 
