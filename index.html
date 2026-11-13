@@ -1411,7 +1411,7 @@ footer {
 <header>
     <div class="header-content">
 
-        <a href="#inicio" class="brand" id="orkapSecretAccess">
+        <a href="/admin.html" class="brand">
             <img src="perfil.png" alt="Orkap" class="profile-photo">
 
             <div>
@@ -1442,61 +1442,6 @@ footer {
         </div>
     </div>
 </header>
-
-<script>
-(function(){
-
-    const brand = document.getElementById('orkapSecretAccess');
-
-    let pressTimer;
-    let longPress = false;
-    let clicks = 0;
-    let clickTimer;
-
-    brand.addEventListener('pointerdown', function(){
-        longPress = false;
-
-        pressTimer = setTimeout(function(){
-            longPress = true;
-            window.location.href = '/admin.html';
-        }, 1000);
-    });
-
-    function cancelPress(){
-        clearTimeout(pressTimer);
-    }
-
-    brand.addEventListener('pointerup', cancelPress);
-    brand.addEventListener('pointerleave', cancelPress);
-    brand.addEventListener('pointercancel', cancelPress);
-
-    brand.addEventListener('click', function(e){
-
-        if(longPress){
-            e.preventDefault();
-            longPress = false;
-            return;
-        }
-
-        clicks++;
-
-        clearTimeout(clickTimer);
-
-        if(clicks >= 5){
-            e.preventDefault();
-            window.location.href = '/admin.html';
-            clicks = 0;
-            return;
-        }
-
-        clickTimer = setTimeout(function(){
-            clicks = 0;
-        }, 2000);
-
-    });
-
-})();
-</script>
 
 <main>
 
