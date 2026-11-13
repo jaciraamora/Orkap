@@ -509,6 +509,34 @@ const total=Number(o.total||0);
 const moeda=escapeHTML(o.moeda||'');
 const estado=getStatus(o);
 
+const produtosMensagem = produtos.map(p =>
+    `${p.nome||p.produto||'Produto'} x${Number(p.quantity??p.quantidade??1)}`
+).join(', ');
+
+const quantidadeTotal = produtos.reduce((s,p) =>
+    s + Number(p.quantity??p.quantidade??1), 0
+);
+
+const mensagemWhatsApp = `Olá, ${cliente.nome||''}! 👋
+
+Estamos a entrar em contacto relativamente à tua encomenda na Orkap.
+
+📦 Dados da encomenda
+• Número: ${o.numero||id}
+• Produtos: ${produtosMensagem}
+• Quantidade: ${quantidadeTotal}
+• Total: ${total.toLocaleString('pt-PT')} ${o.moeda||''}
+
+Para podermos finalizar e confirmar a tua encomenda, pedimos que envies o comprovativo de pagamento por aqui.
+
+Assim que recebermos o comprovativo, daremos seguimento à tua encomenda.
+
+Obrigado pela preferência! 💙
+Orkap — A tua loja online.`;
+
+const telefoneWhatsApp = String(cliente.telefone||'').replace(/\D/g,'');
+const linkWhatsApp = `https://wa.me/${telefoneWhatsApp}?text=${encodeURIComponent(mensagemWhatsApp)}`; 
+
 return `
 <div class="order">
 
@@ -524,7 +552,11 @@ return `
 <h4>Dados do cliente</h4>
 <div class="order-info">
 <strong>Nome:</strong> ${escapeHTML(cliente.nome)}<br>
-<strong>Telefone:</strong> ${escapeHTML(cliente.telefone)}<br>
+<strong>Telefone:</strong>
+<a href="${linkWhatsApp}" target="_blank" rel="noopener noreferrer"
+style="color:#2f6eae;text-decoration:none;font-weight:600">
+${escapeHTML(cliente.telefone)}
+</a><br>
 <strong>Morada:</strong> ${escapeHTML(cliente.morada)}<br>
 <strong>Rua:</strong> ${escapeHTML(cliente.rua)}<br>
 <strong>Caixa postal:</strong> ${escapeHTML(cliente.caixaPostal)}
@@ -634,4 +666,4 @@ db.ref('encomendas/'+id).update({
 
 </script>
 </body>
-</html>
+</html> 
