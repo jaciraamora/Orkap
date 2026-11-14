@@ -1233,34 +1233,6 @@ footer {
     }
 }
 
-/* BOTÃO DISCRETO DO MENU */
-
-.orkap-menu-button {
-    width: 35px;
-    height: 35px;
-    border: none;
-    background: transparent;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 4px;
-    cursor: pointer;
-    border-radius: 7px;
-    transition: .2s;
-}
-
-.orkap-menu-button:hover {
-    background: #f3f5f8;
-}
-
-.orkap-menu-button span {
-    width: 16px;
-    height: 1.5px;
-    background: #64748b;
-    border-radius: 3px;
-}
-
 /* FUNDO DO MENU */
 
 .orkap-menu-overlay {
@@ -1273,22 +1245,23 @@ footer {
     transition: .3s;
 }
 
-/* MENU LATERAL */
+/* MENU LATERAL À DIREITA */
 
 .orkap-side-menu {
     position: fixed;
     top: 0;
-    left: 0;
+    right: 0;
+    left: auto;
     width: 270px;
     max-width: 85%;
     height: 100%;
     background: white;
     z-index: 999;
-    transform: translateX(-100%);
+    transform: translateX(100%);
     transition: transform .3s ease;
     display: flex;
     flex-direction: column;
-    box-shadow: 5px 0 25px rgba(0,0,0,.08);
+    box-shadow: -5px 0 25px rgba(0,0,0,.08);
 }
 
 .orkap-side-menu.active {
@@ -1411,7 +1384,7 @@ footer {
 <header>
     <div class="header-content">
 
-        <a href="admin.html" class="brand">
+      <a href="#inicio" class="brand" onclick="toggleOrkapMenu(); return false;">
             <img src="perfil.png" alt="Orkap" class="profile-photo">
 
             <div>
@@ -1442,6 +1415,35 @@ footer {
         </div>
     </div>
 </header>
+
+<!-- MENU LATERAL ORKAP -->
+
+<div class="orkap-menu-overlay" id="orkapOverlay" onclick="closeOrkapMenu()"></div>
+
+<aside class="orkap-side-menu" id="orkapSideMenu">
+
+    <div class="orkap-menu-header">
+        <span>Orkap</span>
+
+        <button onclick="closeOrkapMenu()" aria-label="Fechar menu">
+            &times;
+        </button>
+    </div>
+
+    <div class="orkap-menu-content">
+
+        <a href="/admin.html" class="orkap-admin-link">
+            <span>↗</span>
+            ENTRAR
+        </a>
+
+    </div>
+
+    <div class="orkap-menu-footer">
+        ORKAP — A TUA LOJA ONLINE
+    </div>
+
+</aside>
 
 <main>
 
@@ -3088,41 +3090,25 @@ updateClubOptions();
 updateCustomPrice();
 renderProducts(); // <- ADICIONA ESTA LINHA
 
-/* MENU LATERAL ORKAP */
-
 function toggleOrkapMenu() {
-
     const menu = document.getElementById("orkapSideMenu");
     const overlay = document.getElementById("orkapOverlay");
-    const button = document.querySelector(".orkap-menu-button");
+
+    if (!menu || !overlay) return;
 
     const abrir = !menu.classList.contains("active");
 
     menu.classList.toggle("active", abrir);
     overlay.classList.toggle("active", abrir);
-
-    button.setAttribute("aria-expanded", abrir);
-
 }
 
 function closeOrkapMenu() {
+    const menu = document.getElementById("orkapSideMenu");
+    const overlay = document.getElementById("orkapOverlay");
 
-    document.getElementById("orkapSideMenu").classList.remove("active");
-
-    document.getElementById("orkapOverlay").classList.remove("active");
-
-    document.querySelector(".orkap-menu-button")
-        .setAttribute("aria-expanded", "false");
-
+    if (menu) menu.classList.remove("active");
+    if (overlay) overlay.classList.remove("active");
 }
-
-document.addEventListener("keydown", function(event) {
-
-    if (event.key === "Escape") {
-        closeOrkapMenu();
-    }
-
-});
 
 const loader = document.getElementById('orkap-loader');
 const message = document.getElementById('orkap-network-message');
@@ -3181,4 +3167,4 @@ checkConnection();
 </script>
 
 </body>
-</html>  
+</html> 
