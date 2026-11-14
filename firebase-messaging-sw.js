@@ -14,10 +14,11 @@ firebase.initializeApp({
 const messaging = firebase.messaging();
 
 messaging.onBackgroundMessage((payload) => {
-    const notificationTitle = payload.notification?.title || 'Nova encomenda na Orkap!';
-
+    const notificationTitle = payload.data?.title || 'Nova encomenda na Orkap!';
+ 
     const notificationOptions = {
         body: payload.notification?.body || 'Recebeste uma nova encomenda.',
+        
         icon: '/perfil.png',
         data: {
             url: '/admin.html'
