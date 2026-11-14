@@ -110,6 +110,11 @@ body{font-family:Inter,Arial;background:#f6f8fb;margin:0;color:#1a2b40}
 </div>
 
 <div class="box hidden" id="panel">
+<div style="text-align:center;margin:15px 0;">
+    <button id="ativarNotificacoes" type="button">
+        🔔 Ativar notificações
+    </button>
+</div>
 
 <div class="tabs">
 <button class="tab active" id="tOrders" onclick="setTab('orders')">ENCOMENDAS <span id="orderCount" class="order-count">0</span></button>
@@ -142,6 +147,7 @@ body{font-family:Inter,Arial;background:#f6f8fb;margin:0;color:#1a2b40}
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js"></script>
 <script>
 
 const firebaseConfig={
@@ -228,6 +234,56 @@ ordersRef=null;
 }
 }
 });
+
+const VAPID_KEY = "BAqZnaukD0MeIKeX64xJfrKKyRvwqMtQk4KeKNIm-OqqrYGQKFEX0hM9TpsulwBjU-6i7UsqsOs7exGuARJPy6o";
+
+document.getElementById('ativarNotificacoes').addEventListener('click', async function(){
+
+    const u = auth.currentUser;
+
+    if(!u){
+        alert('Inicia sessão primeiro.');
+        return;
+    }
+
+    try {
+        if(!('Notification' in window)){
+            alert('Este navegador não suporta notificações.');
+            return;
+        }
+
+        const permissao = await Notification.requestPermission();
+
+        if(permissao !== 'granted'){
+            alert('Não autorizaste as notificações.');
+            return;
+        }
+
+        const registration = await navigator.serviceWorker.register('/firebase-messaging-sw.js');
+
+        const messaging = firebase.messaging();
+
+        const token = await messaging.getToken({
+            vapidKey: VAPID_KEY,
+            serviceWorkerRegistration: registration
+        });
+
+        if(!token){
+            alert('Não foi possível obter o registo de notificações.');
+            return;
+        }
+
+        await db.ref('adminPushTokens/' + u.uid).set(token);
+
+        alert('Notificações ativadas com sucesso!');
+
+    } catch(error) {
+        console.error(error);
+        alert('Erro ao ativar notificações: ' + error.message);
+    }
+
+});
+
 
 function load(){
 db.ref().once('value',s=>{
@@ -662,7 +718,7 @@ db.ref('encomendas/'+id).update({
     alert('Não foi possível atualizar o estado: '+error.message);
 });
 
-}
+} 
 
 </script>
 </body>

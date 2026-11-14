@@ -2982,6 +2982,27 @@ async function checkout() {
         };
 
         await encomendaRef.set(encomenda);
+		
+		// ENVIAR NOTIFICAÇÃO AO ADMINISTRADOR
+
+try {
+    const resposta = await fetch('/api/notify-order', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            orderId: encomendaRef.key
+        })
+    });
+
+    if (!resposta.ok) {
+        console.error('Não foi possível enviar a notificação.');
+    }
+
+} catch (erroNotificacao) {
+    console.error('Erro ao enviar notificação:', erroNotificacao);
+}
 
     } catch (error) {
 
