@@ -19,11 +19,17 @@ module.exports = async (req, res) => {
         });
     }
 
+    let notificacaoRef;
+
     try {
 
         const { orderId } = req.body || {};
 
-        if (!orderId || typeof orderId !== "string") {
+        if (
+            !orderId ||
+            typeof orderId !== "string" ||
+            !/^[a-zA-Z0-9_-]+$/.test(orderId)
+        ) {
             return res.status(400).json({
                 error: "Identificador da encomenda inválido."
             });
@@ -44,20 +50,27 @@ module.exports = async (req, res) => {
         const encomenda = snapshot.val();
 
         // Aceitar apenas encomendas recentes
-        const idade = Date.now() - encomenda.data;
+        const idade = Date.now() - Number(encomenda.data);
 
-        if (!encomenda.data || idade < 0 || idade > 180000) {
+        if (
+            !encomenda.data ||
+            !Number.isFinite(Number(encomenda.data)) ||
+            idade < 0 ||
+            idade > 180000
+        ) {
             return res.status(400).json({
                 error: "Encomenda fora do período permitido."
             });
         }
 
-        // Evitar notificações repetidas
-        const notificacaoRef = orderRef.child("_notificacaoEnviada");
+        // Controlar notificações sem alterar a encomenda
+        notificacaoRef = db.ref(
+            "notificacoesEnviadas/" + orderId
+        );
 
         const resultado = await notificacaoRef.transaction(valor => {
-            if (valor === true) return;
-            return true;
+            if (valor) return;
+            return "enviando";
         });
 
         if (!resultado.committed) {
@@ -69,6 +82,14 @@ module.exports = async (req, res) => {
         // Procurar o dispositivo do administrador
         const uid = process.env.ADMIN_UID;
 
+        if (!uid) {
+            await notificacaoRef.remove();
+
+            return res.status(500).json({
+                error: "UID do administrador não configurado."
+            });
+        }
+
         const tokenSnapshot = await db
             .ref("adminPushTokens/" + uid)
             .once("value");
@@ -76,29 +97,45 @@ module.exports = async (req, res) => {
         const token = tokenSnapshot.val();
 
         if (!token) {
-            await notificacaoRef.set(false);
+            await notificacaoRef.remove();
 
             return res.status(404).json({
                 error: "Nenhum dispositivo registado."
             });
         }
 
+        // Preparar a notificação
+        const titulo = "Nova encomenda na Orkap!";
+        const mensagem =
+            "Recebeste a encomenda " + (encomenda.numero || "");
+
         // Enviar notificação
         await admin.messaging().send({
             token: token,
 
+            notification: {
+                title: titulo,
+                body: mensagem
+            },
+
             data: {
-                title: "Nova encomenda na Orkap!",
-                body: "Recebeste a encomenda " + encomenda.numero,
+                title: titulo,
+                body: mensagem,
                 url: "/admin.html"
             },
 
             webpush: {
                 headers: {
                     Urgency: "high"
+                },
+
+                fcmOptions: {
+                    link: "https://orkap.vercel.app/admin.html"
                 }
             }
         });
+
+        await notificacaoRef.set(true);
 
         return res.status(200).json({
             success: true,
@@ -106,6 +143,10 @@ module.exports = async (req, res) => {
         });
 
     } catch (error) {
+
+        if (notificacaoRef) {
+            await notificacaoRef.remove().catch(() => {});
+        }
 
         console.error("Erro na notificação:", error);
 
