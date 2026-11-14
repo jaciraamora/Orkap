@@ -99,6 +99,9 @@ body{font-family:Inter,Arial;background:#f6f8fb;margin:0;color:#1a2b40}
 <div class="top">
 <div class="logo">ADMISTRAÇÃO DA LOJA ORKAP</div>
 <button id="btnOut" class="btn btn-ghost hidden" onclick="logout()">Sair</button>
+<button id="btnHome" class="btn btn-ghost hidden" onclick="window.location.href='/'">
+    Voltar à loja
+</button>
 </div>
 
 <div class="box" id="loginBox" style="padding:30px 18px">
@@ -223,6 +226,8 @@ auth.onAuthStateChanged(u=>{
 loginBox.classList.toggle('hidden',!!u);
 panel.classList.toggle('hidden',!u);
 btnOut.classList.toggle('hidden',!u);
+
+btnHome.classList.toggle('hidden',!u);
 
 if(u){
 load();
